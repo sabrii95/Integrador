@@ -9,7 +9,7 @@ body{
 .conteiner{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 70px 80% 50px;
+    
 
 }
 
@@ -48,7 +48,7 @@ body{
     text-align: center;
     transition: all .4s;
     flex-direction: column;
-    top: -100vh;
+    top: -500vh;
     background-image: linear-gradient(to right, #a8caba 0%, #5d4157 100%);
     
 }
@@ -91,12 +91,44 @@ ul.show{
     font-size: 23px;
 }
 
-.lupa img{
+.buscador img{
     height: 33px;
     
 }
 
+.listado{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3vh;
+    height: 100%;
+    /* width: 100%;
+    text-align: center;
 
+    vertical-align: middle; */
+    
+
+}
+
+.pokemon{
+    height: 50vh;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    
+/*   
+    text-align: center;
+    padding-top: 100px;
+    vertical-align: middle; */
+}
+
+.pokemon img {
+    max-height:  80%;
+    
+    border-radius: 10%;
+
+    
+}
 
 .footer{
     grid-column: 1 / -1;
