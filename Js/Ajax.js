@@ -1,12 +1,105 @@
 
 $(document).ready(() => {
 
-    $(buscar).click(() => {
+    const opciones = {
+        type: "",
+        eggs: "",
+        height: 100000000000,
+        width: 100000000000
+    }
+
+    $(buscar).click(async () => {
+        $('#listado-pokemon').text("");
         let input = $(search).val().trim();
-        buscarColor(input);
+        const pokemon = await buscarPokemon(input);
+        añadirPokemon(pokemon.response)
+    })
+
+
+    $('.tipo').click(async (response) => {
+        opciones.type = response.target.dataset.value;
+
+        $(response.target).toggleClass('invertir-color');
 
 
     })
+
+
+
+    $('.type-eggs').click(async (response) => {
+        opciones.eggs = response.target.dataset.value;
+        $(response.target).toggleClass('invertir-color');
+
+
+
+
+
+    })
+
+    $('#busqueda-Avanzada').click(async () => {
+        $('#listado-pokemon').text("");
+
+        if (opciones.eggs != "") {
+            const eggs = await buscarTiposHuevos(opciones.eggs)
+            const json = eggs.response
+            json.map(async x => {
+                let pokemon = await buscarPokemon(x.name);
+                if (pokemon.code === 200) {
+                    // console.log("pokemon.response.type == opciones.type" +JSON.stringify(pokemon.response.type)  + " " + opciones.type)
+                    if (opciones.type != "") {
+                        const tipos = (pokemon.response.type)
+                        tipos.map(async x => {                           
+                            if ( x.type.name == opciones.type) añadirPokemon(pokemon.response)
+                        })
+                        
+                        // const tiposfiltrados = tipos.filter( validarTipos)
+                        // console.log(JSON.stringify(tiposfiltrados))
+                        // if (tipos[0] == opciones.type) añadirPokemon(pokemon.response)
+                    }
+
+                    else añadirPokemon(pokemon.response)
+                }
+
+            });
+
+        }
+        else if (opciones.type != "") {
+            const type = await buscarTiposPokemon(opciones.type);
+            json = type.response
+            json.map(async x => {
+                let pokemon = await buscarPokemon(x.pokemon.name);
+                if (opciones.type != "") {
+
+                    if (pokemon.response.type == opciones.type) añadirPokemon(pokemon.response)
+                }
+
+                else añadirPokemon(pokemon.response)
+
+            });
+        }
+
+
+
+
+
+    })
+
+
+    $('#all-eggs').click(async (response) => {
+
+
+        $('.type-eggs').css({ 'display': 'block' })
+    })
+
+    const validarTipos = (tipo)=>{
+        // console.log("tipo.type.name"+tipo.type.name+ ""+opciones.type )
+        if(tipo.type.name == opciones.type) return true
+        else return false
+
+
+    }
+
+
 
     const buscarColor = async (color) => {
 
@@ -36,11 +129,110 @@ $(document).ready(() => {
     const buscarPokemon = async (name) => {
         try {
             const response = await $.ajax(`https://pokeapi.co/api/v2/pokemon/${name}`);
-   
 
-            return {code:200, response:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`};
+
+            return {
+                code: 200,
+                response: { image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, especie: response.name, type: response.types }
+            };
         } catch ({ error }) {
-            return {code:400, response: error}
+            return { code: 400, response: error }
+
+        }
+
+
+    }
+    const añadirPokemon = (data) => {
+        // console.log("name vacio"+data.response.name)
+
+
+        if (data.type.length == 1) {
+            $("<article>", {
+                'class': 'pokemon'
+            }).append(
+                $('<img>', {
+                    'src': data.image,
+                    'alt': data.especie
+                }),
+                $('<h5>', {
+                    'text': data.especie.toUpperCase(),
+                    'class': 'nombre-pokemon'
+                })
+                ,
+                $('<h5>', {
+                    'text': data.type[0].type.name.toUpperCase(),
+                    'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
+
+                })
+
+            ).hide().appendTo('#listado-pokemon').fadeIn('fast');
+        }
+        else {
+
+            $("<article>", {
+                'class': 'pokemon'
+            }).append(
+                $('<img>', {
+                    'src': data.image,
+                    'alt': data.especie
+                }),
+                $('<h5>', {
+                    'text': data.especie.toUpperCase(),
+                    'class': 'nombre-pokemon'
+                })
+                ,
+                $('<h5>', {
+                    'text': data.type[0].type.name.toUpperCase(),
+                    'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
+
+                }), $('<h5>', {
+                    'text': data.type[1].type.name.toUpperCase(),
+                    'class': `tipos-pokemon ${data.type[1].type.name.toUpperCase()}`,
+
+
+                })
+
+            ).hide().appendTo('#listado-pokemon').fadeIn('fast');
+
+        }
+
+    }
+
+    const buscarTiposPokemon = async (tipo) => {
+        try {
+            const response = await $.ajax(`https://pokeapi.co/api/v2/type/${tipo}`);
+            var json = response.pokemon;
+            // json.map(async x => {
+            //     console.log("nombre"+x.pokemon.name)
+
+            //      let image = await buscarPokemon(x.pokemon.name);
+
+            //      if(image != 400)  añadirPokemon(image);
+
+
+            // });
+            return {
+                code: 200,
+                response: response.pokemon
+            };
+
+        } catch ({ error }) {
+            return { code: 400, response: error }
+
+        }
+    }
+
+    const buscarTiposHuevos = async (tipo) => {
+        try {
+            const response = await $.ajax(`https://pokeapi.co/api/v2/egg-group/${tipo}`);
+
+            return {
+                code: 200,
+                response: response.pokemon_species
+            };
+
+        } catch ({ error }) {
+            return { code: 400, response: error }
 
         }
 

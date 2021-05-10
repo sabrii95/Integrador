@@ -19,6 +19,7 @@ body{
     background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
  background-blend-mode: multiply,multiply;
     
+    
 }
 
 .menu{
@@ -56,9 +57,12 @@ ul.show{
     top:69px;
 }
 
-.menu-item li{
+.item-sub{
     margin: 30px 0 0 0;
-    line-height: 30px;
+    line-height: 15px;
+    list-style:none;
+    width: 100%;
+    display: block;
    
 }
 .menu-item h5{
@@ -73,6 +77,9 @@ ul.show{
 }
 .galeria-imagenes{
     grid-column: 1 / -1;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
 }
 .buscador{
     width: 100%;
@@ -96,18 +103,60 @@ ul.show{
     
 }
 
+.b-avanzado{
+    width: 80%;
+    margin-top: 1vh;
+    display: inline-block;
+    text-align: center;
+    padding: 3%;
+    border-radius: 10px;
+    background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);    
+    font-weight: bold;
+    
+   
+}
+.b-avanzado label{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    font-size: 25px;
+    
+    
+}
+.tipos{
+    display: flex;
+    width: 100%;
+    /* justify-content: space-between; */
+   
+}
+.tipos ul{
+    padding-left: 0;
+    margin: 1%;
+    display: inline-block;
+    justify-content: center;
+    width: 50%;
+  
+
+
+}
+.tipos li{
+    padding-left: 0;
+    margin: 5px;
+    margin: 15px 0 0 0; 
+    list-style:none;
+    width: 100%;
+    display: block;
+
+}
+
+
+
 .listado{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 3vh;
     height: 100%;
-    /* width: 100%;
-    text-align: center;
-
-    vertical-align: middle; */
-    
-
 }
 
 .pokemon{
@@ -115,20 +164,92 @@ ul.show{
     padding: 10px;
     margin: 5px;
     text-align: center;
-    
-/*   
-    text-align: center;
-    padding-top: 100px;
-    vertical-align: middle; */
+
 }
 
 .pokemon img {
     max-height:  80%;
-    
     border-radius: 10%;
 
     
 }
+.nombre-pokemon{
+    
+    margin:0;
+    font-size: 4vh;
+    border-radius: 5px
+}
+.tipos-pokemon{
+    display: inline-block;
+    margin:0;
+    padding: 2%;
+    font-size: 3vh;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+    margin-right: 5px;
+    width: 30%;
+}
+.descrip{
+    display: inline-block;
+    border: 2px solid #a4a4a4;
+    border-radius: 5px;
+    width:50%;
+    height: 30%;
+    line-height: 28px;
+    margin-right: 8px;
+
+
+}
+.tipo{
+    display: inline-block;
+    background: #F2F2F2;
+    border-radius: 14px;
+    color: #313131;
+    line-height: 30px;
+    width: 28px;
+}
+.eggs{
+    width: 100%;
+   
+}
+.eggs label{
+    font-size: 18px;
+}
+.eggs ul{
+   
+    display: inline-block;
+    border: 2px solid #a4a4a4;
+    border-radius: 5px;
+    width:50%;
+  
+    line-height: 28px;
+    padding-left: 0;
+    
+    
+   
+}
+.eggs li{
+    list-style:none;
+    margin: 0;
+    margin-left: 0;
+   
+    padding: 5px;
+    justify-content: center;
+
+   
+}
+.type-eggs{
+    display: none;
+    border-radius: 10px;
+    
+}
+
+
+.invertir-color {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    color: white;
+  }
+
 
 .footer{
     grid-column: 1 / -1;
@@ -138,6 +259,60 @@ ul.show{
 
 .publicidad{
     display: none;
+}
+
+.POISON{
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.FAIRY{
+    background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+}
+.NORMAL{
+    background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
+}
+.FLYING{
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+.BUG{
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+.DRAGON{
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+}
+.FIRE{
+    background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+}
+.WATER{
+    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+}
+.DARK{
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+.PSYCHIC{
+    background-image: linear-gradient(to right, #a8caba 0%, #5d4157 100%);
+}
+.ROCK{
+    background-image: linear-gradient(to top, #50cc7f 0%, #f5d100 100%);
+}
+.FIGHTING{
+    background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
+}
+.GRASS{
+    background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
+}
+.GHOST{
+    background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
+}
+.STEEL{
+    background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
+
+}
+.GROUND{
+    background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%);
+}
+.ICE{
+    background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
 }
 
 @media (min-width: 768px) and (orientation:landscape) {
