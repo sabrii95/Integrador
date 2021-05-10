@@ -7,160 +7,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./Css/style.css">
+    <link rel="stylesheet" href="./Css/menu.css">
     <script src="Js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <div class="conteiner">
-        <header class="header">
 
-            <nav class="menu">
+    <header class="header">
 
+        <nav class="menu">
 
+           
+                <img class="icono-desplegable" id="icono-desp" src="./img/logo/boton-de-menu-de-tres-lineas-horizontales.png" alt="opciones">
+          
 
-                <img class="icono-desplegable" id="icono-desp"
-                    src="./img/logo/boton-de-menu-de-tres-lineas-horizontales.png" alt="opciones">
-
+            <div class="contenedor-icono"> 
                 <img class="icono" src="./img/logo/1280px-International_Pokémon_logo.svg.png" alt="logo Pokemon">
+            </div>
 
 
-                <ul class="menu-item" id="elemento">
-                    <li class="item-sub">
-                        <h5>Home</h5>
+
+            <ul class="menu-item" id="elemento">
+                <li class="item-sub">
+                    <h5>Home</h5>
+                </li>
+                <li class="item-sub">
+                    <h5>Pokedex</h5>
+                </li>
+                <li class="item-sub">
+                    <h5>Ubicacion</h5>
+                </li>
+                <li class="item-sub">
+                    <h5>Contacto</h5>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="galeria-imagenes">
+        <section class="buscador">
+            <input type="search" id="search">
+            <div class="lupa" id="buscar">
+                <img src="./img/logo/lupa.png" alt="Lupa">
+            </div>
+
+        </section>
+        <section class="b-avanzado">
+
+            <label >Busqueda Avanzada</label>
+            <div class="tipos">
+                <ul>
+                    <li class="item">
+                        <span class="descrip BUG">BICHO</span>
+                        <span class="tipo" data-value="bug">T</span>
                     </li>
-                    <li class="item-sub">
-                        <h5>Pokedex</h5>
+                    <li class="item">
+                        <span class="descrip DRAGON">DRAGON</span>
+                        <span class="tipo" data-value="dragon">T</span>
                     </li>
-                    <li class="item-sub">
-                        <h5>Ubicacion</h5>
+                    <li class="item">
+                        <span class="descrip FAIRY">HADA</span>
+                        <span class="tipo" data-value="fairy">T</span>
                     </li>
-                    <li class="item-sub">
-                        <h5>Contacto</h5>
+                    <li class="item">
+                        <span class="descrip FIRE">FUEGO</span>
+                        <span class="tipo" data-value="fire">T</span>
+                    </li>
+                    <li class="item">
+                        <span class="descrip GHOST">FANTASMA</span>
+                        <span class="tipo" data-value="ghost">T</span>
+                    </li>
+                    <li class="item">
+                        <span class="descrip GROUND">TIERRA</span>
+                        <span class="tipo" data-value="ground">T</span>
+                    </li>
+                    <li class="item">
+                        <span class="descrip NORMAL">NORMAL</span>
+                        <span class="tipo" data-value="normal">T</span>
+                    </li>
+                    <li class="item">
+                        <span class="descrip PSYCHIC">PSÍQUICO</span>
+                        <span class="tipo" data-value="psychic">T</span>
+                    </li>
+                    <li class="item">
+                        <span class="descrip STEEL">ACERO</span>
+                        <span class="tipo" data-value="steel">T</span>
                     </li>
 
                 </ul>
-            </nav>
+                <ul>
+                    <li class="item"><span class="descrip DARK">SINIESTRO</span><span class="tipo" data-value="dark">T</span>
+                    </li>
+                    <li class="item"><span class="descrip ELECTRIC">ELECTRICO</span><span class="tipo" data-value="electric">T</span></li>
+                    <li class="item"><span class="descrip FIGHTING">LUCHA</span><span class="tipo" data-value="fighting">T</span>
+                    </li>
+                    <li class="item"><span class="descrip FLYING">VOLADOR</span><span class="tipo" data-value="flying">T</span>
+                    </li>
+                    <li class="item"><span class="descrip GRASS">PLANTA</span><span class="tipo" data-value="grass">T</span>
+                    </li>
+                    <li class="item"><span class="descrip ICE">HIELO</span><span class="tipo" data-value="ice">T</span>
+                    </li>
+                    <li class="item"><span class="descrip POISON">VENENO</span><span class="tipo" data-value="poison">T</span>
+                    </li>
+                    <li class="item"><span class="descrip ROCK">ROCA</span><span class="tipo" data-value="rock">T</span>
+                    </li>
+                    <li class="item"><span class="descrip WATER">AGUA</span><span class="tipo" data-value="water">T</span>
+                    </li>
 
-        </header>
-
-        <main class="galeria-imagenes">
-            <section class="buscador">
-                <input type="search" id="search">
-                <div class="lupa" id="buscar">
-                    <img src="./img/logo/lupa.png" alt="Lupa">
-                </div>
-
-            </section>
-            <section class="b-avanzado">
-
-                <label class="">Busqueda Avanzada</label>
-                <div class="tipos">
-                    <ul>
-                        <li class="item">
-                            <span class="descrip">BICHO</span>
-                            <span class="tipo" data-value="bug">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">DRAGON</span>
-                            <span class="tipo" data-value="dragon">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">HADA</span>
-                            <span class="tipo" data-value="fairy">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">FUEGO</span>
-                            <span class="tipo" data-value="fire">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">FANTASMA</span>
-                            <span class="tipo" data-value="ghost">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">TIERRA</span>
-                            <span class="tipo" data-value="ground">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">NORMAL</span>
-                            <span class="tipo" data-value="normal">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">PSÍQUICO</span>
-                            <span class="tipo" data-value="psychic">T</span>
-                        </li>
-                        <li class="item">
-                            <span class="descrip">ACERO</span>
-                            <span class="tipo" data-value="steel">T</span>
-                        </li>
-
-                    </ul>
-                    <ul>
-                        <li class="item"><span class="descrip">SINIESTRO</span><span class="tipo"
-                                data-value="dark">T</span></li>
-                        <li class="item"><span class="descrip">ELECTRICO</span><span class="tipo"
-                                data-value="electric">T</span></li>
-                        <li class="item"><span class="descrip">LUCHA</span><span class="tipo"
-                                data-value="fighting">T</span></li>
-                        <li class="item"><span class="descrip">VOLADOR</span><span class="tipo"
-                                data-value="flying">T</span></li>
-                        <li class="item"><span class="descrip">PLANTA</span><span class="tipo"
-                                data-value="grass">T</span></li>
-                        <li class="item"><span class="descrip">HIELO</span><span class="tipo" data-value="ice">T</span>
-                        </li>
-                        <li class="item"><span class="descrip">VENENO</span><span class="tipo"
-                                data-value="poison">T</span></li>
-                        <li class="item"><span class="descrip">ROCA</span><span class="tipo" data-value="rock">T</span>
-                        </li>
-                        <li class="item"><span class="descrip">AGUA</span><span class="tipo" data-value="water">T</span>
-                        </li>
-
-                    </ul>
+                </ul>
 
 
-                </div>
-                <div class="eggs">
-                    <label for="tipo-huevo">Tipo de Huevo </label>
-                    <ul>
-                        <li><span id="all-eggs" data-value="Todas">Todas</span></li>
-                        <li><span class="type-eggs" data-value="monster">Monster</span></li>
-                        <li><span class="type-eggs" data-value="water1">Water</span></li>
-                        <li><span class="type-eggs" data-value="bug">Bug</span></li>
-                        <li><span class="type-eggs" data-value="flying">Flying</span></li>
-                        <li><span class="type-eggs" data-value="ground">Ground</span></li>
-                        <li><span class="type-eggs" data-value="plant">Plant</span></li>
-                        <li><span class="type-eggs" data-value="humanshape">Humanshape</span></li>
-                        <li><span class="type-eggs" data-value="mineral">Mineral</span></li>
-                        <li><span class="type-eggs" data-value="indeterminate">Indeterminate</span></li>
-                        <li><span class="type-eggs" data-value="ditto">ditto</span></li>
-                        <li><span class="type-eggs" data-value="dragon">dragon</span></li>
-                        <li><span class="type-eggs" data-value="no-eggs">No eggs</span></li>
-                    </ul>
-                    
-                </div>
+            </div>
+            <div class="eggs">
+                <label >Tipo de Huevo </label>
+                <ul id="lista-huevos" class="lista-huevos">
+                    <li class="init"><span id="all-eggs" data-value="Todas">Todas</span></li>
+                    <li><span class="type-eggs" data-value="monster">Monster</span></li>
+                    <li><span class="type-eggs" data-value="water1">Water</span></li>
+                    <li><span class="type-eggs" data-value="bug">Bug</span></li>
+                    <li><span class="type-eggs" data-value="flying">Flying</span></li>
+                    <li><span class="type-eggs" data-value="ground">Ground</span></li>
+                    <li><span class="type-eggs" data-value="plant">Plant</span></li>
+                    <li><span class="type-eggs" data-value="humanshape">Humanshape</span></li>
+                    <li><span class="type-eggs" data-value="mineral">Mineral</span></li>
+                    <li><span class="type-eggs" data-value="indeterminate">Indeterminate</span></li>
+                    <li><span class="type-eggs" data-value="ditto">ditto</span></li>
+                    <li><span class="type-eggs" data-value="dragon">dragon</span></li>
+                    <li><span class="type-eggs" data-value="no-eggs">No eggs</span></li>
+                </ul>
+
+            </div>
 
             <input type="submit" value="Buscar" id="busqueda-Avanzada">
-            </section>
-            <section id="listado-pokemon" class="listado">
+        </section>
+        <section id="listado-pokemon" class="listado">
 
 
-            </section>
+        </section>
 
-        </main>
+    </main>
 
-        <aside class="publicidad">
-            <h5>Aside</h5>
-        </aside>
-
-
-
-
-        <div class="footer">
-            <footer>Desarrollo.com</footer>
-        </div>
+    <aside class="publicidad">
+        <h5>Aside</h5>
+    </aside>
 
 
 
+
+    <div class="footer">
+        <footer>Desarrollo.com</footer>
     </div>
+
+
+
+
     <script src="Js/Ajax.js"></script>
     <script src="Js/scripts.js"></script>
 </body>

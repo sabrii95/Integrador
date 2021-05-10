@@ -28,7 +28,7 @@ $(document).ready(() => {
 
     $('.type-eggs').click(async (response) => {
         opciones.eggs = response.target.dataset.value;
-        $(response.target).toggleClass('invertir-color');
+        
 
 
 
@@ -38,7 +38,7 @@ $(document).ready(() => {
 
     $('#busqueda-Avanzada').click(async () => {
         $('#listado-pokemon').text("");
-
+        console.log(JSON.stringify(opciones))
         if (opciones.eggs != "") {
             const eggs = await buscarTiposHuevos(opciones.eggs)
             const json = eggs.response
@@ -59,21 +59,21 @@ $(document).ready(() => {
 
                     else añadirPokemon(pokemon.response)
                 }
-
+            
             });
+            
 
         }
         else if (opciones.type != "") {
             const type = await buscarTiposPokemon(opciones.type);
             json = type.response
             json.map(async x => {
-                let pokemon = await buscarPokemon(x.pokemon.name);
-                if (opciones.type != "") {
-
-                    if (pokemon.response.type == opciones.type) añadirPokemon(pokemon.response)
-                }
-
-                else añadirPokemon(pokemon.response)
+                let pokemon = await buscarPokemon(x.pokemon.name);        
+                const tipos = (pokemon.response.type)
+                tipos.map(async x => {                           
+                    if ( x.type.name == opciones.type) añadirPokemon(pokemon.response)
+                })
+              
 
             });
         }
@@ -87,7 +87,7 @@ $(document).ready(() => {
 
     $('#all-eggs').click(async (response) => {
 
-
+        $('.eggs ul').css({'height':'auto'})
         $('.type-eggs').css({ 'display': 'block' })
     })
 
@@ -98,6 +98,24 @@ $(document).ready(() => {
 
 
     }
+    $("#lista-huevos").on("click", ".init", function() {
+        // $("#lista-huevos").toggleClass('definir-altura');
+        $(this).closest("#lista-huevos").children('li:not(.init)').toggle();
+        $("#lista-huevos").css({'height':'25vh','background': '09f'})
+        
+    });
+    
+    var allOptions = $("#lista-huevos").children('li:not(.init)');
+    $("#lista-huevos").on("click", "li:not(.init)", function() {
+        $("#lista-huevos").css({'height':'7vh','background': '09f'})
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $("#lista-huevos").children('.init').html($(this).html());
+        
+
+        allOptions.toggle();
+
+    });
 
 
 
