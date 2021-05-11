@@ -18,8 +18,8 @@ $(document).ready(() => {
 
     $('.tipo').click(async (response) => {
         opciones.type = response.target.dataset.value;
-
-        $(response.target).toggleClass('invertir-color');
+        $('.tipo').removeClass('invertir-color');
+        $(response.target).addClass('invertir-color');
 
 
     })
@@ -45,16 +45,11 @@ $(document).ready(() => {
             json.map(async x => {
                 let pokemon = await buscarPokemon(x.name);
                 if (pokemon.code === 200) {
-                    // console.log("pokemon.response.type == opciones.type" +JSON.stringify(pokemon.response.type)  + " " + opciones.type)
                     if (opciones.type != "") {
                         const tipos = (pokemon.response.type)
                         tipos.map(async x => {                           
                             if ( x.type.name == opciones.type) añadirPokemon(pokemon.response)
                         })
-                        
-                        // const tiposfiltrados = tipos.filter( validarTipos)
-                        // console.log(JSON.stringify(tiposfiltrados))
-                        // if (tipos[0] == opciones.type) añadirPokemon(pokemon.response)
                     }
 
                     else añadirPokemon(pokemon.response)
@@ -83,31 +78,35 @@ $(document).ready(() => {
 
 
     })
+          
+    $('#desplegar-busqueda').click( ()=>{
+        $('.tipos').toggleClass('visualizar-tipos');
+        $('.eggs').toggleClass('visualizar-huevos');
+        $('.boton').toggleClass('visualizar-huevos');
 
 
-    $('#all-eggs').click(async (response) => {
+
+        
+    })
+
+
+    $('#all-eggs').click(async() => {
 
         $('.eggs ul').css({'height':'auto'})
         $('.type-eggs').css({ 'display': 'block' })
     })
 
-    const validarTipos = (tipo)=>{
-        // console.log("tipo.type.name"+tipo.type.name+ ""+opciones.type )
-        if(tipo.type.name == opciones.type) return true
-        else return false
 
-
-    }
     $("#lista-huevos").on("click", ".init", function() {
-        // $("#lista-huevos").toggleClass('definir-altura');
+         $("#lista-huevos").addClass('definir-altura');
         $(this).closest("#lista-huevos").children('li:not(.init)').toggle();
-        $("#lista-huevos").css({'height':'25vh','background': '09f'})
+        // $("#lista-huevos").css({'height':'15vh','background': '09f'})
         
     });
     
     var allOptions = $("#lista-huevos").children('li:not(.init)');
     $("#lista-huevos").on("click", "li:not(.init)", function() {
-        $("#lista-huevos").css({'height':'7vh','background': '09f'})
+        // $("#lista-huevos").css({'height':'5vh','background': '09f'})
         allOptions.removeClass('selected');
         $(this).addClass('selected');
         $("#lista-huevos").children('.init').html($(this).html());

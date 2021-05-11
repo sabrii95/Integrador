@@ -49,7 +49,7 @@ body{
     margin-top: 1vh;
     display: inline-block;
     text-align: center;
-    padding: 3%;
+    padding: 1%;
     border-radius: 10px;
     background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);    
     font-weight: bold;
@@ -88,7 +88,7 @@ body{
 .tipos li{
     padding-left: 0;
     margin: 5px;
-    margin: 15px 0 0 0; 
+    margin: 3% 0 0 0; 
     list-style:none;
     width: 100%;
     display: block;
@@ -162,13 +162,7 @@ body{
 .eggs label{
     font-size: 18px;
 }
-/* .eggs ul{
-   
 
-    
-    
-   
-} */
 .eggs li{
     list-style:none;
     margin: 0;
@@ -190,14 +184,10 @@ body{
     overflow-y: scroll;
     width:40%;
     display: inline-block;
-    border-radius: 5px;
-    
+    border-radius: 5px;    
     text-align: center;
-    height: 7vh;
-       
-    
+    height: 5vh;
     padding-left: 0;
- 
     background: #09f;
  
 
@@ -233,7 +223,9 @@ li.init {
     cursor: pointer; 
 }
 
-
+.definir-altura{
+    max-height: 15vh;
+}
 
 
 .invertir-color {
@@ -251,6 +243,24 @@ li.init {
 .publicidad{
     display: none;
 }
+
+.eggs , .tipos, .boton{
+    display: none;
+}
+
+.visualizar-tipos{
+    display: flex;
+    width: 100%;
+}
+
+.visualizar-huevos{
+    display: inherit    ;
+
+}
+
+
+
+
 
 .POISON{
     background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
