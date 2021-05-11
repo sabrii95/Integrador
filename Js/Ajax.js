@@ -46,7 +46,7 @@ const createItem = (pokemon)=>{
 
     const Element = document.createElement("li");
     Element.classList.add("Poke-card")
-    const html=`<figure><img src=${img} alt="" class="poke-img"/><figure><p>${name}</p>`
+    const html=`<figure><img src=${img} alt="" class="poke-img"/></figure> <p class="Poke-name">${name}</p>`
 
     Element.innerHTML = html;
     PokemonList.appendChild(Element)

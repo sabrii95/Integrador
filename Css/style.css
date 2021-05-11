@@ -153,9 +153,21 @@ footer{
     text-align: center;
 }
 .Poke-card{
-    margin: 10px 0;
+    margin: 10px;
+    padding: 30px;
     display: inline-block;
     text-align: center;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    background-color: #c0c0c0;
+}
+.Poke-card figure{
+    border-radius: 50%;
+    background-color: white;
+}
+.Poke-name{
+    font-weight: bold;
+    margin-top: 10px;
 }
 .poke-img{
     width: 150px;
