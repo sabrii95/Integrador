@@ -7,68 +7,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./Css/style.css">
-    <script src="Js/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="./Img/Poke_Ball_icon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="conteiner">
-        <header class="header">
-
-            <nav class="menu">
-                <img class="icono-desplegable" id="icono-desp"
-                    src="./img/logo/boton-de-menu-de-tres-lineas-horizontales.png" alt="opciones">
-
-                <img class="icono" src="./img/logo/1280px-International_Pokémon_logo.svg.png" alt="logo Pokemon">
-
-
-                <ul class="menu-item" id="elemento">
-                    <li>
-                        <h5>Home</h5>
-                    </li>
-                    <li>
-                        <h5>Pokedex</h5>
-                    </li>
-                    <li>
-                        <h5>Ubicacion</h5>
-                    </li>
-                    <li>
-                        <h5>Contacto</h5>
-                    </li>
-
-                </ul>
-
-
-
-
-            </nav>
-
-        </header>
-
-        <main class="galeria-imagenes">
-            <section class="buscador">
-                <input type="search" id="search">
-                <div class="lupa" id="buscar">
-                    <img src="./img/logo/lupa.png" alt="Lupa">
-                </div>
-            </section>
-            <section id="listado-pokemon">
-            </section>
-        </main>
-
-        <aside class="publicidad">
-            <h5>Aside</h5>
-        </aside>
-
-
-
-
-        <footer>Desarrollo.com</footer>
-
-
-
-    </div>
-    <script src="Js/Ajax.js"></script>
-    <script src="Js/scripts.js"></script>
+    <header>
+        <a class="logo">
+            <img src="./img/1280px-International_Pokémon_logo.svg.png">
+        </a>
+        <nav class="menu">
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a class="inicio">
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="pokedex">
+                        <span>Pokedex</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="contacto">
+                        <span>Contacto</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button class="logo-menu-mobile" onclick="openMenu()">
+            <img src="./img/boton-de-menu-de-tres-lineas-horizontales.png">
+        </button>
+        <nav class="menu-mobile" id="mobile-menu">
+            <ul class="menu-list-mobile">
+                <li class="menu-item-mobile">
+                    <a class="inicio">
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="menu-item-mobile">
+                    <a class="pokedex">
+                        <span>Pokedex</span>
+                    </a>
+                </li>
+                <li class="menu-item-mobile">
+                    <a class="contacto">
+                        <span>Contacto</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Pokedex</h1>
+        <ul id="poke" class="list-container"></ul>
+    </main>
+    <footer>
+        <div class="social">
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="./img/youtube.png">
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="./img/twitter.png">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="./img/instagram.png">
+            </a>
+        </div>
+        <div class="separador"></div>
+        <div class="copyright">
+            <p>© Copyright - Página creada por </p>
+            <p>Sabrina Cabral y Braian Otrera</p>
+        </div>
+    </footer>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./Js/Ajax.js"></script>
 </html>
