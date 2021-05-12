@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokemon</title>
     <link rel="stylesheet" href="./Css/style.css">
     <link rel="icon" href="./Img/Poke_Ball_icon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -20,12 +20,12 @@
         <nav class="menu">
             <ul class="menu-list">
                 <li class="menu-item">
-                    <a class="inicio">
+                    <a class="inicio" href="./index.html">
                         <span>Inicio</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="pokedex">
+                    <a class="pokedex" href="./pokedex.html">
                         <span>Pokedex</span>
                     </a>
                 </li>
@@ -42,12 +42,12 @@
         <nav class="menu-mobile" id="mobile-menu">
             <ul class="menu-list-mobile">
                 <li class="menu-item-mobile">
-                    <a class="inicio">
+                    <a class="inicio" href="./index.html" >
                         <span>Inicio</span>
                     </a>
                 </li>
                 <li class="menu-item-mobile">
-                    <a class="pokedex">
+                    <a class="pokedex" href="./pokedex.html">
                         <span>Pokedex</span>
                     </a>
                 </li>
@@ -60,8 +60,9 @@
         </nav>
     </header>
     <main>
-        <h1>Pokedex</h1>
+        <h1>Home</h1>
         <ul id="poke" class="list-container"></ul>
+        
     </main>
     <footer>
         <div class="social">
@@ -84,4 +85,5 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./Js/Ajax.js"></script>
+<script src="./Js/BusquedaPokemon.js"></script>
 </html>
