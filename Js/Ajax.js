@@ -59,5 +59,5 @@ const createItem = (pokemon)=>{
 
 }
 
-createPokemon()
+// createPokemon()
 

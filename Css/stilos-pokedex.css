@@ -10,6 +10,7 @@ main{
     width: 100%;
     text-align: center;
 }
+/* Buscador de un pokemon con lupa  */
 .buscador{
     width: 100%;
     display: flex;
@@ -31,6 +32,10 @@ main{
     height: 33px;
     
 }
+/* //////////////////////////////////////////////////// */
+
+
+/* Buscador avanzado  */
 
 .b-avanzado{
     width: 100%;
@@ -50,17 +55,31 @@ main{
     width: 100%;
     padding: 0;
     font-size: 25px;
+    justify-content: center;
+    align-items: center;
+
     
     
+}
+.desplegar-menu{
+    display: none;
+}
+
+
+/* Tipo y debilidades de pokemon */
+.conteiner{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
 }
 .tipos{
     display: flex;
     width: 100%;
+    text-align: center;
+    justify-content: left;
     /* justify-content: space-between; */
    
-}
-.desplegar-menu{
-    display: none;
 }
 
 
@@ -69,19 +88,19 @@ main{
     margin: 1%;
     display: inline-block;
     justify-content: center;
-    width: 50%;
+    width: 60%;
   
 
 
 }
 .tipos li{
     padding-left: 0;
-    margin: 5px;
+
     margin: 3% 0 0 0; 
     list-style:none;
     width: 100%;
     display: block;
-    padding: 2%;
+
 
 }
 
@@ -94,6 +113,8 @@ main{
     margin-top: 3vh;
     height: 100%;
 }
+
+/* Estilos de cada pokemon */
 
 .pokemon{
     height: 40vh;
@@ -136,37 +157,83 @@ main{
     display: inline-block;
     border: 2px solid #a4a4a4;
     border-radius: 5px;
-    width:60%;
+    width:50%;
     height: 30%;
     line-height: 28px;
-    margin-right: 8px;
+    margin-right: 5px;
     font-weight: bold;
 
 
 }
-.tipo{
+.tipo , .debilidad{
     display: inline-block;
     background: #F2F2F2;
     border-radius: 14px;
     color: #313131;
     line-height: 30px;
     width: 28px;
+    margin-right: 3px;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+
+
+/* Huevos de pokemon */
 .eggs{
     width: 100%;
     height: 100%;
+    justify-content: center;
     
    
 }
-.eggs label{
+
+.select-eggs{
+ 
+    display: inline-flex;
+    width:99%;
+    padding: 1%;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(49, 49, 49);
+    border-radius: 5px;
+    color: white;
+    
+ 
+ }
+ .eggs h5{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+ }
+ .select-eggs label{
+     
+     display: inline-block;
+     margin: 0;
+     width: 19%;
+     font-size: 15px;
+     
+ }
+ 
+ .select-eggs img{
+     width: 25px;
+     margin-right: 8px;
+     /* margin: 0 1.5vh; */
+ 
+ }
+ 
+/* .eggs label{
     font-size: 18px;
     margin: 1.5vh 0;
-}
-.b-avanzado ul{
+} */
+/* .listado-tipos{
     margin: 1.5vh 0;
-}
+} */
 
-.eggs li{
+/* .eggs li{
     list-style:none;
     margin: 0;
     margin-left: 0;
@@ -175,25 +242,42 @@ main{
     justify-content: center;
 
    
-}
-.type-eggs{
-    display: none;
-    border-radius: 10px;
-    
-    
-}
+} */
+
 
 .lista-huevos { 
-
+    margin: 0;
     overflow-y: scroll;
-    width:50%;
+    width:60%;
     display: inline-block;
-    border-radius: 5px;    
-    text-align: center;
-    height: 5vh;
+    text-align: left;
+    height: 32px;
+    max-height: 20vh;
     padding-left: 0;
-    background: #09f;
+    background-color: rgb(49, 49, 49);
+    padding: 0 1%;
+    border-radius: 5px;
+}
+
+
+
+
+.lista-huevos li { 
+    padding: 1px 0;
+    z-index: 2; 
+    width: 100%;
+    color: white;
+}
+.lista-huevos li:not(.init) { 
+    float: left; 
+    display: none;
+    
  
+
+}
+
+.lista-huevos li:not(.init):hover, ul li.selected:not(.init) {
+     background: #09f;
 
 }
 
@@ -205,37 +289,121 @@ main{
     border-radius: 5px;
 }
 
-
-
-.lista-huevos li { 
-    padding: 1.5% 0;
-    z-index: 2; 
-    width: 100%;
-}
-.lista-huevos li:not(.init) { 
-    float: left; 
-    display: none; 
-    background: #ddd;
-}
-
-.lista-huevos li:not(.init):hover, ul li.selected:not(.init) {
-     background: #09f;
-
-}
-
 li.init {
     cursor: pointer; 
 }
 
-.definir-altura{
-    max-height: 15vh;
+.type-eggs{
+   
+    border-radius: 10px;
+    margin-left: 3px;
+    
+    
+}
+
+/* Peso y altura de los pokemon */
+ .lista-peso ,.lista-tamaño{
+        display: inline-flex;        
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .lista-peso li, .lista-tamaño li{
+        display: inline-flex;       
+        justify-content: center;
+        align-items: center;      
+        background-color: #313131;
+        margin: 0 5px auto;
+        height: 13vh;
+        width: 25vw;
+        border-radius: 8px;
+ 
+    }
+    .tamaño-pokemon h5{
+        display: block;
+        padding-bottom: 8px;
+        margin: 0;
+        font-size: 18px;
+
+    }
+
+    .lista-peso img{
+        width: 60%;        
+    }
+    .lista-tamaño img{
+        width: 80%;
+    }
+
+   
+
+    .tamaño-pokemon{
+        margin-top: 8px;
+        height: 100%;
+        width: 74%;
+      
+    }
+
+    #pequeño img{
+        width: 30%;
+        /* margin-top: 10%; */
+        
+    }
+  
+
+
+
+.boton{
+    width: 25vw;
+
+    font-size: 14px;
+    font-weight: 800;
+    background-color: #ee6b2f;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0.75em 1.25em;
+    margin-top: 15px;
+
+}
+
+.eggs , .tipos, .boton, .tamaño-pokemon{
+    display: none;
 }
 
 
+/* Clases que permiten la visualizacion de los tipos y huevos una vez que se da click en busqueda avanzada es llamada por medio de jquery  */
+.visualizar-tipos{
+    display: flex;
+    width: 100%;
+}
+
+.visualizar-huevos{
+    display: inline-block;
+
+}
+
+
+
+/* Class que cambia color de los Tipos y debilidades cuando se hace click es llamada por medio de jquery  */
 .invertir-color {
     background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
     color: white;
   }
+
+
+
+/* 
+.definir-altura{
+    max-height: 20vh;
+} */
+
+
+.publicidad{
+    display: none;
+}
+
+
+
 
 
 .footer{
@@ -243,37 +411,6 @@ li.init {
     grid-row: 3 / 4; */
     background-image: linear-gradient(to top, #ebbba7 0%, #cfc7f8 100%);
 }
-
-.publicidad{
-    display: none;
-}
-
-.boton{
-    width: 20vw;
-    height: 5vh;
-    font-size: 2.5vh;
-    font-weight: 800;
-
-}
-
-.eggs , .tipos, .boton{
-    display: none;
-}
-
-
-
-.visualizar-tipos{
-    display: flex;
-    width: 100%;
-}
-
-.visualizar-huevos{
-    display: inherit;
-
-}
-
-
-
 
 
 .POISON{
@@ -332,4 +469,145 @@ li.init {
 .ELECTRIC{
     background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
 }
+
+
+@media only screen and (min-width: 750px){
+    
+.lista-huevos { 
+    margin: 0;
+    overflow-y: scroll;
+    width:40%;
+    display: inline-block;
+    text-align: left;
+    height: 35px;
+    max-height: 20vh;
+    padding-left: 0;
+    background-color: rgb(49, 49, 49);
+    padding: 0 1%;
+    border-radius: 5px;
+}
+.select-eggs img{
+    width: 25px;
+    margin-right: 8px;
+    /* margin: 0 1.5vh; */
+
+}
+.lista-huevos li{
+  padding: 1px 0;  
+}
+
+
+
+    
+}
+
+@media only screen and (min-width: 920px){
+    .tipos{
+        width: 60%;
+        align-content: space-between;
+        
+        /* display: inline; */
+    }
+    .tipos ul{
+        width: 40%;
+    }
+    .eggs, .lista-peso{
+        width: 35%;
+        /* height: 35%; */
+        /* display: inline; */
+    }
+
+    .tamaño-pokemon h5{
+        display: inline-block;
+        padding-bottom: 8px;
+        margin: 0;
+        width: 19%;
+        font-size: 27px;
+
+    }
+
+    .lista-huevos { 
+        margin: 0;
+        overflow-y: scroll;
+        width:70%;
+        display: inline-block;
+        text-align: left;
+        height: 35px;
+        max-height: 25vh;
+        padding-left: 0;
+        background-color: rgb(49, 49, 49);
+        padding: 0 1%;
+        border-radius: 5px;
+        align-items: center;
+        margin-top: 5px;
+       
+    }
+
+    .boton{
+        font-size: 17px;        
+        padding: 10px 5px;
+    
+    }
+
+
+    .select-eggs img{
+        width: 25px;
+        margin-right: 8px;
+        /* margin: 0 1.5vh; */
+    
+    }
+
+    .lista-huevos li{
+        padding:0;
+        justify-content: left;
+    }
+    .select-eggs label{
+        width: 40%;
+        font-size: 18px;
+    }
+
+    .lista-peso ,.lista-tamaño{
+        display: inline-flex;        
+        width: 100%;
+        height: 12vh;
+        text-align: center;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .lista-peso li, .lista-tamaño li{
+        display: inline-flex;       
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        width: 100%;
+        background-color: #313131;
+        margin: 0 5px auto;
+        height: 17vh;
+        border-radius: 8px;
+ 
+    }
+
+    .lista-peso img{
+        width: 50%;
+        
+    }
+
+   
+
+    .tamaño-pokemon{
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    #pequeño img{
+        width: 30%;
+        /* margin-top: 10%; */
+        
+    }
+  
+        
+}
+    
 
