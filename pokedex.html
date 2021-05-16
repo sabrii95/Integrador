@@ -176,13 +176,15 @@
 
                 </div>
                 <div class="eggs">
-                    <span><h5>Tipo de Huevo </h5></span>
+                    <span>
+                        <h5>Tipo de Huevo </h5>
+                    </span>
                     <div>
                         <ul id="lista-huevos" class="lista-huevos">
                             <li class="init">
                                 <span id="all-eggs" data-value="Todas" class="select-eggs">
                                     <img src="./img/Poke_Ball_icon.png">
-                                    <label id="option-selected">Todos</label></span>
+                                    <h5 id="option-selected">Todos</h5></span>
                             </li>
                             <li>
 
@@ -231,30 +233,46 @@
                     <div class="tamaño-pokemon">
                         <h5>Peso</h5>
                         <ul class="lista-peso">
-                            
-                            <li id="pequeño">  <img src="./img/pokebolaP.png" alt="pokemon pequeño"> </li>
-                            <li id="grande">  <img src="./img/pokebolas.png" alt="pokemon grande"> </li>
-                        
+
+                            <li id="pequeño" class="item-peso" data-value="500">
+
+                                <img src="./img/pokebolaP.png" alt="pokemon pequeño" data-value="500">
+
+                            </li>
+                            <li id="grande" class="item-peso" data-value="10000">
+
+                                <img src="./img/pokebolas.png" alt="pokemon grande" data-value="10000">
+
+                            </li>
+
                         </ul>
                     </div>
                     <div class="tamaño-pokemon">
                         <h5>Altura</h5>
                         <ul class="lista-tamaño">
-                           
-                            <li id="bajo">  <img src="./img/charmander.png" alt="pokemon pequeño"> </li>
-                            <li id="alto">  <img src="./img/Chrizard.png" alt="pokemon grande"> </li>
-                          
-                        
+
+                            <li id="bajo"  data-value="16" class="item-altura">
+
+                                <img src="./img/charmander.png" alt="pokemon pequeño" data-value="16">
+
+                            </li>
+                            <li id="alto" data-value="200" class="item-altura">
+
+                                <img src="./img/Chrizard.png" alt="pokemon grande" data-value="200">
+
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>
 
             </div>
-           
 
-                <input type="submit" value="Buscar" id="busqueda-Avanzada" class="boton">
-                <input type="submit" value="Restablecer" id="Restablecer" class="boton">
-            
+
+            <input type="submit" value="Buscar" id="busqueda-Avanzada" class="boton">
+            <input type="submit" value="Restablecer" id="Restablecer" class="boton">
+
 
 
         </section>

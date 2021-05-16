@@ -3,11 +3,12 @@ $(document).ready(() => {
 
     const opciones = {
         type: "",
-        debilidad:"",
+        debilidad: "",
         eggs: "",
         height: 100000000000,
         width: 100000000000
     }
+
 
     $(buscar).click(async () => {
         $('#listado-pokemon').text("");
@@ -24,34 +25,67 @@ $(document).ready(() => {
         opciones.height = 100000000000;
         opciones.width = 100000000000;
         $('.tipo').removeClass('invertir-color');
-
         $("#option-selected").text('Todas')
+        $('.item-peso').removeClass('invertir-color-PesoAltura');
+        $('#listado-pokemon').text("");
+        $('.list-container').text("");
 
     });
 
 
 
     $('.tipo').click(async (response) => {
-        if(response.target.dataset.value ==  opciones.type ){
+        if (response.target.dataset.value == opciones.type) {
+            opciones.type = ""
             $(response.target).removeClass('invertir-color');
         }
-        else{
+        else {
+            $('.tipo').removeClass('invertir-color');
             opciones.type = response.target.dataset.value;
             $(response.target).addClass('invertir-color');
+          
         }
 
     });
 
     $('.debilidad').click(async (response) => {
-        if(response.target.dataset.value ==  opciones.debilidad ){
-            opciones.debilidad="";
+        if (response.target.dataset.value == opciones.debilidad) {
+            opciones.debilidad = "";
             $(response.target).removeClass('invertir-color');
-            console.log(opciones.debilidad)
+
         }
-        else{
+        else {
             opciones.debilidad = response.target.dataset.value;
             $(response.target).addClass('invertir-color');
-            console.log(opciones.debilidad)
+
+        }
+
+
+    })
+    $('.item-peso').click(async (response) => {
+        if (response.target.dataset.value == opciones.width) {
+            opciones.width = 100000000000;
+            $(response.currentTarget).removeClass('invertir-color-PesoAltura');
+
+        }
+        else {
+            $('.item-peso').removeClass('invertir-color-PesoAltura');
+            $(response.currentTarget).addClass('invertir-color-PesoAltura');
+            opciones.width = response.target.dataset.value;
+        }
+        console.log(JSON.stringify(opciones))
+
+    })
+    $('.item-altura').click(async (response) => {
+        if (response.target.dataset.value == opciones.height) {
+            opciones.height = 100000000000;
+            $(response.currentTarget).removeClass('invertir-color-PesoAltura');
+
+        }
+        else {
+            $('.item-altura').removeClass('invertir-color-PesoAltura');
+            $(response.currentTarget).addClass('invertir-color-PesoAltura');
+            opciones.height = response.target.dataset.value;
         }
         console.log(JSON.stringify(opciones))
 
@@ -66,56 +100,137 @@ $(document).ready(() => {
     $('#busqueda-Avanzada').click(async () => {
         $('#listado-pokemon').text("");
         $('.list-container').text("");
+        var pokemones = [];
 
-
-        console.log(JSON.stringify(opciones))
         if (opciones.eggs != "") {
+
             const eggs = await buscarTiposHuevos(opciones.eggs)
             const json = eggs.response;
-            json.map(async x => {
+            for await (let x of json) {
                 let pokemon = await buscarPokemon(x.name);
-                if (pokemon.code != 400) {                 
-                    if (opciones.type != "") {
-                        const tipos = (pokemon.response.type)
-                        
-                        tipos.map(async x => {
-                            if (x.type.name == opciones.type) añadirPokemon(pokemon.response)
-                        })
-                    }
-
-                    else añadirPokemon(pokemon.response)
-                }
-
-            });
-
+                pokemones.push(pokemon)
+            }
 
         }
-        else if (opciones.type != "") {
+        if (opciones.type != "" && opciones.eggs == "") {
             const type = await buscarTiposPokemon(opciones.type);
-            json = type.response
-            json.map(async x => {
+            const json = type.response;
+            // console.log(JSON.stringify(json))
+
+            for await (let x of json) {
+             
                 let pokemon = await buscarPokemon(x.pokemon.name);
+                // console.log(pokemon)
+                pokemones.push(pokemon)
+            }
 
-                console.log(pokemon.code)
-                if (pokemon.code != 400 ) {
-                    console.log(pokemon.code)
-                    const tipos = (pokemon.response.type)
-                    tipos.map(async x => {
-                        if (x.type.name == opciones.type) añadirPokemon(pokemon.response)
-                    })
-
-                }
-
-
-            });
-        }
-        else if(opciones.debilidad != ""){
-            
 
         }
+        else if (opciones.type != "" && opciones.eggs != "") {
+            // console.log("typePokemon" +pokemones)
+
+            const typePokemon = filtrarPorTipo(pokemones, opciones.type)
+            console.log("typePokemon" + typePokemon.length + "" + pokemones.length)
+            pokemones = typePokemon;
+
+
+        }
+        //console.log(JSON.stringify(pokemones))
+        const filtradoPeso = filtrasPorPeso(pokemones, opciones.width)
+        const filtradoAltura = filtrarAltura(filtradoPeso, opciones.height)
+        console.log("tamaño" + pokemones.length + "otra " + filtradoPeso.length)
+
+        for await (let x of filtradoAltura) {
+
+            añadirPokemon(x.response);
+
+        }
+
+        console.log(JSON.stringify(opciones))
+        // else if (opciones.type != "") {
+        //     const type = await buscarTiposPokemon(opciones.type);
+        //     json = type.response
+        //     json.map(async x => {
+        //         let pokemon = await buscarPokemon(x.pokemon.name);
+
+        //         // console.log(pokemon.code)
+        //         if (pokemon.code != 400) {
+        //             // console.log(pokemon.code)
+        //             const tipos = (pokemon.response.type)
+        //             tipos.map(async x => {
+        //                 if (x.type.name == opciones.type) añadirPokemon(pokemon.response)
+        //             })
+
+        //         }
+
+
+        //     });
+        // }
+        // else if (opciones.debilidad != "") {
+
+
+        // }
 
 
     })
+
+
+
+    const filtrasPorPeso = (coleccion, peso) => {
+
+        if (peso > 500 && peso < 100000000000) {
+            let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.peso > 500);
+
+            return coleccionfiltrado;
+        }
+        if (peso < 501) {
+            let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.peso < peso);
+            // console.log(coleccionfiltrado.length)
+            return coleccionfiltrado;
+        }
+        return coleccion
+
+    }
+    const filtrarAltura = (coleccion, altura) => {
+        if (altura > 16 && altura < 100000000000) {
+            let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.altura > 16);
+
+            return coleccionfiltrado;
+        }
+        if (altura < 17) {
+            let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.altura < altura);
+            // console.log(coleccionfiltrado.length)
+            return coleccionfiltrado;
+        }
+        return coleccion
+
+    }
+
+    const filtrarPorTipo = (coleccion, type) => {
+        let coleccionTipos= [];
+        coleccion.map( pokemomon => {
+            console.log(pokemomon.response.type[0].type.name)
+            // console.log(pokemon.code)
+            const tipos = (pokemomon.response.type)
+            tipos.map( x  => {
+                if (x.type.name == opciones.type)
+                coleccionTipos.push(pokemomon) 
+            })
+
+        });
+
+        // if (pokemon.response.type.length == 2) {
+        //     let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.type[0].type.name == type || pokemon.response.type[1].type.name == type);
+        // } else {
+        //     let coleccionfiltrado = coleccion.filter(pokemon => pokemon.response.type[0].type.name == type);
+        // }
+
+        return coleccionTipos;
+
+
+
+    }
+
 
     $('#desplegar-busqueda').click(() => {
         $('.tipos').toggleClass('visualizar-tipos');
@@ -144,7 +259,7 @@ $(document).ready(() => {
         allOptions.removeClass('selected');
         $(this).addClass('selected');
         $("#option-selected").html($(this).html())
-        console.log("this"+JSON.stringify($(this)))
+        // console.log("this" + JSON.stringify($(this)))
 
         allOptions.toggle();
 
@@ -177,16 +292,16 @@ $(document).ready(() => {
 
     }
 
-    
+
     const buscarPokemon = async (name) => {
         try {
             const response = await $.ajax(`https://pokeapi.co/api/v2/pokemon/${name}`);
             return {
                 code: 200,
-                response: { image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, especie: response.name, type: response.types }
+                response: { image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, especie: response.name, type: response.types, peso: response.weight, altura: response.height }
             };
         } catch ({ error }) {
-            console.log("algo salio mal")
+
             return { code: 400, response: "ocurrio un error al recuperar la informacion" }
 
         }
@@ -194,7 +309,10 @@ $(document).ready(() => {
 
     }
     const añadirPokemon = (data) => {
+
         if (data.type.length == 1) {
+
+
             $("<article>", {
                 'class': 'pokemon'
                 // 'class': 'Poke-card'
@@ -249,6 +367,7 @@ $(document).ready(() => {
             ).hide().appendTo('#listado-pokemon').fadeIn('fast');
 
         }
+
 
     }
 
