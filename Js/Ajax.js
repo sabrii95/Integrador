@@ -18,7 +18,7 @@ const openMenu=()=>{
 }
 
 const createPokemon = async()=>{
-    for(let x=1; x <= 151; x++){
+    for(let x=1; x <=118; x++){
         await getPokemon(x)
 
     }

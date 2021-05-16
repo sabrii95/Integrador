@@ -1,6 +1,7 @@
 
-$(document).ready(() => {
-
+$(document).ready(async () => {
+   
+    
     const opciones = {
         type: "",
         debilidad: "",
@@ -8,6 +9,7 @@ $(document).ready(() => {
         height: 100000000000,
         width: 100000000000
     }
+    var listadoTotalPokemon = [];
 
 
     $(buscar).click(async () => {
@@ -100,6 +102,7 @@ $(document).ready(() => {
     $('#busqueda-Avanzada').click(async () => {
         $('#listado-pokemon').text("");
         $('.list-container').text("");
+        console.log(JSON.stringify(opciones))
         var pokemones = [];
 
         if (opciones.eggs != "") {
@@ -113,6 +116,7 @@ $(document).ready(() => {
 
         }
         if (opciones.type != "" && opciones.eggs == "") {
+            console.log("voy a buscar los tipos")
             const type = await buscarTiposPokemon(opciones.type);
             const json = type.response;
             // console.log(JSON.stringify(json))
@@ -120,33 +124,43 @@ $(document).ready(() => {
             for await (let x of json) {
              
                 let pokemon = await buscarPokemon(x.pokemon.name);
-                // console.log(pokemon)
                 pokemones.push(pokemon)
             }
+            console.log("termine")
 
 
         }
         else if (opciones.type != "" && opciones.eggs != "") {
-            // console.log("typePokemon" +pokemones)
 
             const typePokemon = filtrarPorTipo(pokemones, opciones.type)
-            console.log("typePokemon" + typePokemon.length + "" + pokemones.length)
+            // console.log("typePokemon" + typePokemon.length + "" + pokemones.length)
             pokemones = typePokemon;
 
 
         }
-        //console.log(JSON.stringify(pokemones))
+        else if (opciones.type == "" && opciones.eggs == ""){
+            pokemones = []
+            pokemones = listadoTotalPokemon;
+            
+            
+        }
+
+
+        console.log((pokemones.length))
         const filtradoPeso = filtrasPorPeso(pokemones, opciones.width)
         const filtradoAltura = filtrarAltura(filtradoPeso, opciones.height)
         console.log("tamaño" + pokemones.length + "otra " + filtradoPeso.length)
-
-        for await (let x of filtradoAltura) {
-
+        // console.log(buscarTodosPokemon())
+        for (const x of filtradoAltura) {
             añadirPokemon(x.response);
-
         }
+        // for await (let x of filtradoAltura) {
 
-        console.log(JSON.stringify(opciones))
+        //     añadirPokemon(x.response);
+
+        // }
+
+       
         // else if (opciones.type != "") {
         //     const type = await buscarTiposPokemon(opciones.type);
         //     json = type.response
@@ -173,6 +187,39 @@ $(document).ready(() => {
 
 
     })
+    
+    $('#desplegar-busqueda').click(() => {
+        $('.tipos').toggleClass('visualizar-tipos');
+        $('.eggs').toggleClass('visualizar-huevos');
+        $('.tamaño-pokemon').toggleClass('visualizar-huevos');
+        $('.boton').toggleClass('visualizar-huevos');
+
+    })
+
+
+    $('#all-eggs').click(async () => {
+        $('.eggs ul').css({ 'height': 'auto' })
+        $('.type-eggs').css({ 'display': 'block' })
+    })
+
+
+    $("#lista-huevos").on("click", ".init", function () {
+        $(this).closest("#lista-huevos").children('li:not(.init)').toggle();
+
+
+    });
+
+    var allOptions = $("#lista-huevos").children('li:not(.init)');
+    $("#lista-huevos").on("click", "li:not(.init)", function () {
+
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $("#option-selected").html($(this).html())
+        // console.log("this" + JSON.stringify($(this)))
+
+        allOptions.toggle();
+
+    });
 
 
 
@@ -211,7 +258,7 @@ $(document).ready(() => {
         coleccion.map( pokemomon => {
             console.log(pokemomon.response.type[0].type.name)
             // console.log(pokemon.code)
-            const tipos = (pokemomon.response.type)
+            // const tipos = (pokemomon.response.type)
             tipos.map( x  => {
                 if (x.type.name == opciones.type)
                 coleccionTipos.push(pokemomon) 
@@ -232,38 +279,6 @@ $(document).ready(() => {
     }
 
 
-    $('#desplegar-busqueda').click(() => {
-        $('.tipos').toggleClass('visualizar-tipos');
-        $('.eggs').toggleClass('visualizar-huevos');
-        $('.tamaño-pokemon').toggleClass('visualizar-huevos');
-        $('.boton').toggleClass('visualizar-huevos');
-
-    })
-
-
-    $('#all-eggs').click(async () => {
-        $('.eggs ul').css({ 'height': 'auto' })
-        $('.type-eggs').css({ 'display': 'block' })
-    })
-
-
-    $("#lista-huevos").on("click", ".init", function () {
-        $(this).closest("#lista-huevos").children('li:not(.init)').toggle();
-
-
-    });
-
-    var allOptions = $("#lista-huevos").children('li:not(.init)');
-    $("#lista-huevos").on("click", "li:not(.init)", function () {
-
-        allOptions.removeClass('selected');
-        $(this).addClass('selected');
-        $("#option-selected").html($(this).html())
-        // console.log("this" + JSON.stringify($(this)))
-
-        allOptions.toggle();
-
-    });
 
 
 
@@ -412,6 +427,42 @@ $(document).ready(() => {
 
 
     }
+
+    const buscarTodosPokemon = async () => {
+        try {
+            const response = await $.ajax(`https://pokeapi.co/api/v2/pokemon?limit=1118`);
+
+            return {
+                code: 200,
+                response: response.results
+            };
+
+        } catch ({ error }) {
+            return { code: 400, response: error }
+
+        }
+
+
+    }
+    
+    var todosPokemon = await buscarTodosPokemon();
+    
+
+    // for (const x of todosPokemon) {
+    //     console.log(x)
+    //     const pokemon = await $.ajax(`https://pokeapi.co/api/v2/pokemon/${x.name}`);
+    //     listadoTotalPokemon.push(pokemon);
+        
+    // }
+    for await (let x of todosPokemon.response) {
+        
+        const pokemon = await buscarPokemon(x.name);
+        listadoTotalPokemon.push(pokemon);
+
+
+        
+    }
+    console.log("total "+ listadoTotalPokemon.length)
 
 })
 
