@@ -1,0 +1,7 @@
+/* .conteiner-favorito{
+
+} */
+.item-favorito{
+    justify-self:flex-start;
+    max-width: 23px;
+}

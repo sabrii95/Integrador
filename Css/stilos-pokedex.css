@@ -118,6 +118,8 @@ main{
 
 .pokemon{
     height: 40vh;
+    min-height: 40vh;
+    min-width: 35vw;
     padding: 10px;
     margin: 5px;
     text-align: center;
@@ -132,7 +134,7 @@ main{
 }
 
 .pokemon img {
-    max-height:  80%;
+    max-height:  75%;
     border-radius: 10%;
 
     
@@ -380,8 +382,21 @@ li.init {
     margin-top: 15px;
 
 }
+.carga{
+    width: 15vw;
 
-.eggs , .tipos, .boton, .tamaño-pokemon{
+    font-size: 20px;
+    font-weight: 800;
+    background-color: #ee6b2f;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0.22em ;
+    margin-top: 8px;
+
+}
+
+.eggs , .tipos, .boton, .tamaño-pokemon , .carga{
     display: none;
 }
 
@@ -419,7 +434,7 @@ li.init {
 } */
 
 
-.publicidad{
+.ocultar{
     display: none;
 }
 
@@ -523,6 +538,9 @@ li.init {
 
 .lista-tamaño img{
     width: auto;
+}
+.pokemon{
+    min-width: 18vw;
 }
 
 

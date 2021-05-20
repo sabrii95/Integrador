@@ -96,7 +96,7 @@ footer{
 .menu-item span{
     font-weight: bold;
 }
-.inicio, .pokedex, .contacto {
+.inicio, .pokedex, .contacto, .favoritos {
     text-decoration: none;
     color:black;
     font-weight: 800;
@@ -110,8 +110,11 @@ footer{
 .pokedex:hover,.pokedex::before,.pokedex::after{
     background-color: #ee6b2f;
 }
-.contacto:hover,.contacto::before,.contacto::after{
+.favoritos:hover,.favoritos::before,.favoritos::after{
     background-color: #e6bc2f;
+}
+.contacto:hover,.contacto::before,.contacto::after{
+    background-color: #4dad5b;;
 }
 .social a{
     text-decoration: none;

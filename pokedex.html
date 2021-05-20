@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./Css/style.css">
     <link rel="icon" href="./Img/Poke_Ball_icon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="../Css/estilos-favoritos.css">
     <link rel="stylesheet" href="./Css/stilos-pokedex.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -32,6 +33,11 @@
                     </a>
                 </li>
                 <li class="menu-item">
+                    <a class="favoritos" href="./src/favoritos.html">
+                        <span>Favoritos</span>
+                    </a>
+                </li>
+                <li class="menu-item">
                     <a class="contacto">
                         <span>Contacto</span>
                     </a>
@@ -44,13 +50,18 @@
         <nav class="menu-mobile" id="mobile-menu">
             <ul class="menu-list-mobile">
                 <li class="menu-item-mobile">
-                    <a class="inicio" href="./index.html">
+                    <a class="inicio" href="../index.html">
                         <span>Inicio</span>
                     </a>
                 </li>
                 <li class="menu-item-mobile">
                     <a class="pokedex" href="./pokedex.html">
                         <span>Pokedex</span>
+                    </a>
+                </li>
+                <li class="menu-item-mobile">
+                    <a class="favoritos" href="./src/favoritos.html">
+                        <span>Favoritos</span>
                     </a>
                 </li>
                 <li class="menu-item-mobile">
@@ -280,8 +291,9 @@
 
 
         </section>
-        <ul id="poke" class="list-container"></ul>
-
+        <div >
+            <input type="submit" value="Cargar" class="carga" id="carga">
+        </div>
     </main>
     <footer>
         <div class="social">
