@@ -24,17 +24,17 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: relative; */
     position: fixed;
     width: 100%;
+    z-index: 2;
 }
 main{
-    
+
     min-height: 900px;
     background-color: white;
     width: 80%;
     margin:0 auto;
-    padding: 50px 0;
+    padding: 70px 0;
 }
 
 

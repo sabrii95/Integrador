@@ -1,0 +1,237 @@
+.pokeFigure-container{
+    width: 90%;
+}
+.pokeFigure{
+    background-color: #EBEBED;
+    min-width: 320px;
+    border-radius: 6px;
+}
+.dataContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+.pokeFigure img{
+    max-width: 100%;
+}
+#poke-title span{
+    color: darkgray;
+}
+.data{
+    width: 40%;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.data p{
+    font-weight: bold;
+}
+.description{
+    text-align: left;
+    margin: 20px 0;
+}
+.description h2{
+    font-size: 30px;
+}
+.info{
+    background-color: #30a7d7;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.info ul{
+    list-style: none;
+}
+.size{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.abilitys{
+    text-align: left;
+}
+.abilitys li{
+    margin: 10px 0;
+}
+.data-title{
+    margin-bottom: 5px;
+    color: white;
+}
+.types-graf{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.types-graf h2{
+    margin-bottom: 15px;
+}
+.types,.graf{
+    width: 90%;
+    margin-bottom: 15px;
+}
+.types ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.types ul li{
+    margin: 0 2.5px;
+    padding: 8px 50px;
+    border-radius: 5px;
+}
+.types h3{
+    color:white
+}
+.evolution-chain{
+    width: 80%;
+    margin: 20px auto 0;
+    text-align: left;
+    background-color: #EBEBED;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.chain{
+    list-style: none;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.chain li{
+    text-align: center;
+}
+.poke-chain{
+    border: 5px solid white;
+    border-radius: 50%;
+    text-align: center;
+    width: 105px;
+    background-color: darkgray;
+    margin-bottom: 8px;
+}
+.poke-chain img{
+    max-width: 100%;
+}
+.chain-item{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    justify-content: center;
+}
+.arrow{
+    transform: rotate(
+        90deg
+        );
+}
+.poke-link{
+    text-decoration: none;
+    color: black;
+}
+.share{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+.share-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.share-title img{
+    width: 30px;
+    margin-right: 10px;
+}
+.share-list{
+    display: flex;
+    margin-top: 10px;
+    list-style: none;
+}
+.share-item{
+    margin-right: 10px;
+}
+.share-item img{
+    width: 40px;
+}
+
+@media only screen and (min-width: 900px){
+    .pokeFigure-container,.types,.graf{
+        width: 40%;
+    }
+    .dataContainer,.types-graf{
+        flex-direction: row;
+        align-items: none;
+    }
+    .chain{
+        flex-direction: row;
+    }
+    .arrow{
+        transform: rotate(
+            0deg
+            );
+    }
+}
+
+
+/*Graficos*/
+
+.graph-container,
+.graphic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.graph-container {
+    position: relative;
+    margin: 3pt;
+}
+
+.graphic {
+    background-image: linear-gradient(#ebebed 50%, #30a7d7 50%);
+    transform: rotate(120deg);
+    animation: rotate 1.5s linear;
+}
+.graf-data,.graf-data::after {
+    position: absolute;
+    background-color: white;
+}
+.graf-data {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    top: 12.5%;
+    left: 12.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.graf-data p{
+    font-weight: bold;
+}
+.graf-data::after {
+    content: "";
+    width: 80px;
+    height: 40px;
+    top: 50%;
+    z-index: -1;
+}
+.graph-group {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}

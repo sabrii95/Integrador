@@ -17,47 +17,47 @@ const openMenu=()=>{
 
 }
 
-const createPokemon = async()=>{
-    for(let x=1; x <= 151; x++){
-        await getPokemon(x)
+// const createPokemon = async()=>{
+//     for(let x=1; x <= 151; x++){
+//         await getPokemon(x)
 
-    }
-}
+//     }
+// }
 
-const getPokemon = async id=>{
-    const url =`https://pokeapi.co/api/v2/pokemon/${id}/`;
-    var data;
-    await $.ajax({
-        url: url,
-        method: "GET",
-        async: true,
-        success: (res) => {
-            data=res;
-        },
-        error: (xhr) => {console.log(xhr)}
-    });
+// const getPokemon = async id=>{
+//     const url =`https://pokeapi.co/api/v2/pokemon/${id}/`;
+//     var data;
+//     await $.ajax({
+//         url: url,
+//         method: "GET",
+//         async: true,
+//         success: (res) => {
+//             data=res;
+//         },
+//         error: (xhr) => {console.log(xhr)}
+//     });
 
-    createItem(data);
-}
+//     createItem(data);
+// }
 
-const createItem = (pokemon)=>{
+// const createItem = (pokemon)=>{
 
-    let name=pokemon.forms[0].name;
-    name=name[0].toUpperCase() + name.slice(1);
-    let img =`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+//     let name=pokemon.forms[0].name;
+//     name=name[0].toUpperCase() + name.slice(1);
+//     let img =`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
-    const Element = document.createElement("li");
-    Element.classList.add("Poke-card")
-    const html=`<figure><img src=${img} alt="" class="poke-img"/></figure> <p class="Poke-name">${name}</p>`
+//     const Element = document.createElement("li");
+//     Element.classList.add("Poke-card")
+//     const html=`<figure><img src=${img} alt="" class="poke-img"/></figure> <p class="Poke-name">${name}</p>`
 
-    Element.innerHTML = html;
-    PokemonList.appendChild(Element)
+//     Element.innerHTML = html;
+//     PokemonList.appendChild(Element)
 
 
  
 
 
-}
+// }
 
-createPokemon()
+// createPokemon()
 
