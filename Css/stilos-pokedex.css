@@ -118,6 +118,8 @@ main{
 
 .pokemon{
     height: 40vh;
+    min-height: 40vh;
+    min-width: 35vw;
     padding: 10px;
     margin: 5px;
     text-align: center;
@@ -132,7 +134,7 @@ main{
 }
 
 .pokemon img {
-    max-height:  80%;
+    max-height:  75%;
     border-radius: 10%;
 
     
@@ -202,12 +204,12 @@ main{
  }
  .eggs h5{
     display: inline-block;
-    width: 100%;
+  
     padding: 0;
     font-size: 18px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
  }
  .select-eggs label{
      
@@ -248,10 +250,10 @@ main{
 .lista-huevos { 
     margin: 0;
     overflow-y: scroll;
-    width:60%;
+    width:63.3%;
     display: inline-block;
     text-align: left;
-    height: 32px;
+    /* height: 32px; */
     max-height: 20vh;
     padding-left: 0;
     background-color: rgb(49, 49, 49);
@@ -263,7 +265,7 @@ main{
 
 
 .lista-huevos li { 
-    padding: 1px 0;
+    /* padding: 1px 0; */
     z-index: 2; 
     width: 100%;
     color: white;
@@ -323,18 +325,33 @@ li.init {
         display: block;
         padding-bottom: 8px;
         margin: 0;
-        font-size: 18px;
+        font-size: 25px;
 
     }
 
     .lista-peso img{
-        width: 60%;        
+        width: 40%;        
     }
     .lista-tamaño img{
-        width: 80%;
+        width: auto;
+    }
+    /* .lista-peso,  span{
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 5px;
+        justify-content: center;
     }
 
-   
+    .lista-tamaño span{
+        height: 100%;
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 5px;
+        justify-content: center;
+    }
+    */
 
     .tamaño-pokemon{
         margin-top: 8px;
@@ -344,7 +361,7 @@ li.init {
     }
 
     #pequeño img{
-        width: 30%;
+        width: 25%;
         /* margin-top: 10%; */
         
     }
@@ -365,8 +382,21 @@ li.init {
     margin-top: 15px;
 
 }
+.carga{
+    width: 15vw;
 
-.eggs , .tipos, .boton, .tamaño-pokemon{
+    font-size: 20px;
+    font-weight: 800;
+    background-color: #ee6b2f;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0.22em ;
+    margin-top: 8px;
+
+}
+
+.eggs , .tipos, .boton, .tamaño-pokemon , .carga{
     display: none;
 }
 
@@ -390,6 +420,12 @@ li.init {
     color: white;
   }
 
+  .invertir-color-PesoAltura {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: white;
+  }
+
+
 
 
 /* 
@@ -398,7 +434,7 @@ li.init {
 } */
 
 
-.publicidad{
+.ocultar{
     display: none;
 }
 
@@ -411,6 +447,142 @@ li.init {
     grid-row: 3 / 4; */
     background-image: linear-gradient(to top, #ebbba7 0%, #cfc7f8 100%);
 }
+
+@media only screen and (min-width: 750px){
+.lista-huevos {
+    margin: 0;
+    overflow-y: scroll;
+    width:34.3%;
+    display: inline-block;
+    text-align: left;
+    /* height: 35px; */
+    max-height: 20vh;
+    padding-left: 0;
+    background-color: rgb(49, 49, 49);
+    padding: 0 1%;
+    border-radius: 5px;
+}
+.select-eggs img{
+    width: 25px;
+    margin-right: 8px;
+    /* margin: 0 1.5vh; */
+
+}
+.lista-huevos li{
+  padding: 1px 0;
+}
+.lista-peso ,.lista-tamaño{
+    height: 14vh;
+    width: 30vw;
+}
+
+.lista-tamaño img{
+    width: auto;
+}
+.pokemon{
+    min-width: 18vw;
+}
+
+}
+
+@media only screen and (min-width: 920px){
+    .tipos{
+        width: 60%;
+        align-content: space-between;
+        /* display: inline; */
+    }
+    .tipos ul{
+        width: 40%;
+    }
+    .eggs, .lista-peso{
+        width: 35%;
+        /* height: 35%; */
+        /* display: inline; */
+    }
+    .eggs h5{
+        font-size: 25px;
+    }
+
+    .lista-huevos {
+        margin: 0;
+        overflow-y: scroll;
+        width:86.7%;
+        display: inline-block;
+        text-align: left;
+        /* height: 35px; */
+        max-height: 25vh;
+        padding-left: 0;
+        background-color: rgb(49, 49, 49);
+        padding: 0 1%;
+        border-radius: 5px;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    .boton{
+        font-size: 17px;
+        padding: 10px 5px;
+    }
+
+
+    .select-eggs img{
+        width: 25px;
+        margin-right: 8px;
+        /* margin: 0 1.5vh; */
+    }
+
+    .lista-huevos li{
+        padding:0;
+        justify-content: left;
+    }
+    .select-eggs h5{
+        /* width: 40%; */
+        font-size: 18px;
+    }
+
+    .lista-peso ,.lista-tamaño{
+        /* display: inline-flex;         */
+        width: 25vw;
+        /* height: 12vh; */
+        /* text-align: center;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0; */
+    }
+    .lista-peso li, .lista-tamaño li{
+        /* display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle; */
+        height: 15vh;
+        /* background-color: #313131;
+        margin: 0 5px auto;
+        border-radius: 8px; */
+    }
+
+    .lista-peso img{
+        width: 40%;
+    }
+    .lista-tamaño img{
+        width: auto;
+    }
+
+    .tamaño-pokemon{
+        margin-top: 8px;
+        width: 100%;
+    }
+    .tamaño-pokemon h5{
+        display: inline-block;
+        padding-bottom: 8px;
+        margin: 0;
+        width: 19%;
+        font-size: 27px;
+
+    }
+}
+
+
 .POISON{
     background-color: #b058a0;
 }
@@ -466,145 +638,3 @@ li.init {
 .ELECTRIC{
     background-color: #f8bf30;
 }
-
-
-@media only screen and (min-width: 750px){
-    
-.lista-huevos { 
-    margin: 0;
-    overflow-y: scroll;
-    width:40%;
-    display: inline-block;
-    text-align: left;
-    height: 35px;
-    max-height: 20vh;
-    padding-left: 0;
-    background-color: rgb(49, 49, 49);
-    padding: 0 1%;
-    border-radius: 5px;
-}
-.select-eggs img{
-    width: 25px;
-    margin-right: 8px;
-    /* margin: 0 1.5vh; */
-
-}
-.lista-huevos li{
-  padding: 1px 0;  
-}
-
-
-
-    
-}
-
-@media only screen and (min-width: 920px){
-    .tipos{
-        width: 60%;
-        align-content: space-between;
-        
-        /* display: inline; */
-    }
-    .tipos ul{
-        width: 40%;
-    }
-    .eggs, .lista-peso{
-        width: 35%;
-        /* height: 35%; */
-        /* display: inline; */
-    }
-
-    .tamaño-pokemon h5{
-        display: inline-block;
-        padding-bottom: 8px;
-        margin: 0;
-        width: 19%;
-        font-size: 27px;
-
-    }
-
-    .lista-huevos { 
-        margin: 0;
-        overflow-y: scroll;
-        width:70%;
-        display: inline-block;
-        text-align: left;
-        height: 35px;
-        max-height: 25vh;
-        padding-left: 0;
-        background-color: rgb(49, 49, 49);
-        padding: 0 1%;
-        border-radius: 5px;
-        align-items: center;
-        margin-top: 5px;
-       
-    }
-
-    .boton{
-        font-size: 17px;        
-        padding: 10px 5px;
-    
-    }
-
-
-    .select-eggs img{
-        width: 25px;
-        margin-right: 8px;
-        /* margin: 0 1.5vh; */
-    
-    }
-
-    .lista-huevos li{
-        padding:0;
-        justify-content: left;
-    }
-    .select-eggs label{
-        width: 40%;
-        font-size: 18px;
-    }
-
-    .lista-peso ,.lista-tamaño{
-        display: inline-flex;        
-        width: 100%;
-        height: 12vh;
-        text-align: center;
-        align-items: center;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-    .lista-peso li, .lista-tamaño li{
-        display: inline-flex;       
-        justify-content: center;
-        align-items: center;
-        vertical-align: middle;
-        width: 100%;
-        background-color: #313131;
-        margin: 0 5px auto;
-        height: 17vh;
-        border-radius: 8px;
- 
-    }
-
-    .lista-peso img{
-        width: 50%;
-        
-    }
-
-   
-
-    .tamaño-pokemon{
-        margin-top: 8px;
-        width: 100%;
-    }
-
-    #pequeño img{
-        width: 30%;
-        /* margin-top: 10%; */
-        
-    }
-  
-        
-}
-    
-

@@ -268,6 +268,12 @@ const CreateEvolutionChain = async(json) =>{
     }
 }
 
+const setDatoShare=()=>{
+    let texto = `Ven a ver el mejor pokemon ${PokeJson.name}!! el mejor de todos Link: ${window.location.href}`
+    localStorage.setItem('datosShare', texto);
+    window.location.replace("share.html")
+}
+
 $(document).ready(()=>{
     if(id == undefined || parseInt(id) > 898){
         window.location.replace("index.html")
@@ -275,4 +281,5 @@ $(document).ready(()=>{
     else{
         createView()
     }
+
 })
