@@ -136,6 +136,7 @@ main{
 .pokemon img {
     max-height:  75%;
     border-radius: 10%;
+    padding: 1.5%;
 
     
 }
@@ -149,11 +150,11 @@ main{
     display: inline-block;
     margin:0;
     padding: 2%;
-    font-size: 3vh;
+    font-size: 2.5vh;
     border-radius: 5px;
     
     margin-right: 5px;
-    width: 40%;
+    width: 35%;
 }
 .descrip{
     display: inline-block;
@@ -437,6 +438,29 @@ li.init {
 .ocultar{
     display: none;
 }
+.restablecer-Opacidad{
+    opacity: 1;
+}
+
+.favorito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+
+}
+.favorito img {
+    position: block;
+ 
+    height: 3.5vh;
+    
+}
+.item-favorito {
+    opacity: 0.50;
+}
+
+
 
 
 

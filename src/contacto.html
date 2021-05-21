@@ -7,11 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon</title>
     <link rel="stylesheet" href="../Css/style.css">
-    <link rel="stylesheet" href="../Css/stilos-pokedex.css">
+    <!-- <link rel="stylesheet" href="../Css/stilos-pokedex.css"> -->
     <link rel="stylesheet" href="../Css/estilos-favoritos.css">
     <link rel="icon" href="./Img/Poke_Ball_icon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 </head>
 
 <body>
@@ -43,7 +49,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="contacto">
+                    <a class="contacto" href="./contacto.html">
                         <span>Contacto</span>
                     </a>
                 </li>
@@ -55,7 +61,7 @@
         <nav class="menu-mobile" id="mobile-menu">
             <ul class="menu-list-mobile">
                 <li class="menu-item-mobile">
-                    <a class="inicio" href="../index.html" >
+                    <a class="inicio" href="../index.html">
                         <span>Inicio</span>
                     </a>
                 </li>
@@ -74,9 +80,9 @@
                         <span>Historial</span>
                     </a>
                 </li>
-               
+
                 <li class="menu-item-mobile">
-                    <a class="contacto">
+                    <a class="contacto" href="./contacto.html">
                         <span>Contacto</span>
                     </a>
                 </li>
@@ -84,12 +90,19 @@
         </nav>
     </header>
     <main>
-        <h1>Favoritos</h1>
-        <section id="listado-pokemon" class="listado">
-
-
+        <h1 class="titulo">Informacion de contacto </h1>
+        <section class="info-contacto">
+            <p>Desarrolladores: Otrera Brian y Cabral Sabrina</p>
+            <p>Mail: novasolutions@gmail.com</p>
+            <p>Telefono: 4391-2006</p>
         </section>
-        
+        <section class="contenedor-mapa" >
+            <div id="map">
+
+            </div>
+        </section>
+
+
     </main>
     <footer>
         <div class="social">
@@ -113,8 +126,10 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../Js/Ajax.js"></script>
+<script src="../Js/cargar-mapa.js"></script>
 
-<script src="../Js/Pokemones-favoritos.js"></script>
+
+
 <!-- <script type="module" src="../Js/BusquedaPokemon.js"></script> -->
 
 

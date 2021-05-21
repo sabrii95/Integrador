@@ -93,15 +93,15 @@ $(document).ready(async () => {
 
         }
     }
-
     for (x = 0; x <= localStorage.length - 1; x++) {
         clave = localStorage.key(x);
         const valor = localStorage.getItem(clave)
         let sustraer = clave.substring(0,4)
-        console.log(sustraer)
+
         const pokemonparseado = JSON.parse(valor);
         
-        if ( sustraer!= 'hist') {
+        if ( sustraer == 'hist') {
+            console.log(sustraer+ " especia "+pokemonparseado.especie )
             añadirPokemon(pokemonparseado)
 
         }

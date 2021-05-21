@@ -27,6 +27,7 @@ header{
     /* position: relative; */
     position: fixed;
     width: 100%;
+    z-index: 50;
 }
 main{
     
@@ -96,7 +97,7 @@ footer{
 .menu-item span{
     font-weight: bold;
 }
-.inicio, .pokedex, .contacto, .favoritos {
+.inicio, .pokedex, .contacto, .favoritos, .historial {
     text-decoration: none;
     color:black;
     font-weight: 800;
@@ -105,17 +106,28 @@ footer{
 }
 
 .inicio:hover,.inicio::before,.inicio::after{
-    background-color: #E3350D;
+    background-color: rgb(145, 145, 145);
 }
 .pokedex:hover,.pokedex::before,.pokedex::after{
-    background-color: #ee6b2f;
+    background-color: #E3350D;
 }
 .favoritos:hover,.favoritos::before,.favoritos::after{
-    background-color: #e6bc2f;
+    background-color: #ee6b2f;
 }
 .contacto:hover,.contacto::before,.contacto::after{
     background-color: #4dad5b;;
 }
+.historial:hover,.historial::before,.historial::after{
+    background-color: #e6bc2f;;
+}
+
+
+
+
+
+
+
+
 .social a{
     text-decoration: none;
     color: black;

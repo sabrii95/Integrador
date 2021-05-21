@@ -1,7 +1,5 @@
 
 $(document).ready(async () => {
-
-
     const opciones = {
         type: "",
         debilidad: "",
@@ -13,8 +11,7 @@ $(document).ready(async () => {
     var limit = 15;
     var offset = 0;
     var i = 0;
-    var totalPokemonFiltrado =null;
-    var filtradoAltura;
+    var totalPokemonFiltrado = null;
     var allOptions = $("#lista-huevos").children('li:not(.init)');
     var pokemones = [];
 
@@ -116,19 +113,20 @@ $(document).ready(async () => {
 
         if (opciones.eggs != "") {
             const eggs = await buscarTiposHuevos(opciones.eggs)
+            console.log(eggs.response)
             totalPokemonFiltrado = eggs.response
 
-            // filtrarContenidoPorHuevo();
             paginado();
-            
+
 
         }
         else if (opciones.type != "" && opciones.eggs == "") {
+            totalPokemonFiltrado = null;
             const type = await buscarTiposPokemon(opciones.type);
-            otalPokemonFiltrado = type.response
+            totalPokemonFiltrado = type.response
             paginado();
-           
-            
+
+
         }
         else if (opciones.type == "" && opciones.eggs == "") {
             pokemones = []
@@ -225,30 +223,37 @@ $(document).ready(async () => {
     })
 
     const filtrarContenidoPorTipo = async () => {
-        let coleccionTipo = totalPokemonFiltrado.slice(offset) 
+        let coleccionTipo = totalPokemonFiltrado.slice(offset)
         let pokemonFiltrado;
-        limit=0;    
-        console.log("Los consegui")  
-       
-        
+        limit = 0;
+        console.log("Los consegui")
+
+
         for await (let x of coleccionTipo) {
             let pokemon = await buscarPokemon(x.pokemon.name);
-
+            offset +=1;
             if (pokemon.code == 200) {
                 console.log("pokemon procesado")
                 pokemonFiltrado = filtrasPorPeso(pokemon, opciones.width)
                 pokemonFiltrado = filtrarAltura(pokemonFiltrado, opciones.height)
 
                 if (pokemonFiltrado != null) {
-                    console.log("son del mismo altra ")
+                    console.log("especie",pokemonFiltrado.response.especie)
+                    if (consultarFavorito(pokemonFiltrado.response.especie)){
+                        pokemonFiltrado.response.favorito =true;
+                        console.log("marque como favorito a ",pokemonFiltrado.response.especie)
+                    }
+    
                     limit += 1;
-                    console.log(JSON.stringify (pokemon.response))
+
                     añadirPokemon(pokemon.response)
+
+
                     pokemones.push(pokemon.response)
-                    if (limit == 15){
-                        console.log("ofset"+offset)
+                    if (limit == 15) {
+                        console.log("ofset" + offset)
                         return
-                    } 
+                    }
 
                 }
 
@@ -258,61 +263,80 @@ $(document).ready(async () => {
 
     }
 
-    const filtrarContenidoPorHuevo = async( )=>{
-            let coleccionHuevos = totalPokemonFiltrado.slice(offset) 
-            let pokemonFiltrado;
-            limit=0;    
-            console.log("Los consegui")   
-             
-            
-        
-            for await (let x of coleccionHuevos) {
-                let pokemon = await buscarPokemon(x.name);
-                offset += 1;
-                if (pokemon.code == 200) {
-                    pokemonFiltrado = filtrarPorTipo(pokemon)
-                    pokemonFiltrado = filtrasPorPeso(pokemonFiltrado, opciones.width)
-                    // if (pokemonFiltrado != null) {
-                    pokemonFiltrado = filtrarAltura(pokemonFiltrado, opciones.height)
-                }
+    const filtrarContenidoPorHuevo = async () => {
+        let coleccionHuevos = totalPokemonFiltrado.slice(offset)
+        let pokemonFiltrado;
+        limit = 0;
 
-                if (pokemonFiltrado != null) {
-        
-                    limit += 1;
-                    añadirPokemon(pokemon.response)
-                    pokemones.push(pokemon.response)
-                    
-                    if (limit == 15){
+        for await (let x of coleccionHuevos) {
+            let pokemon = await buscarPokemon(x.name);
+            offset += 1;
+            if (pokemon.code == 200) {
+                pokemonFiltrado = filtrarPorTipo(pokemon)
+                pokemonFiltrado = filtrasPorPeso(pokemonFiltrado, opciones.width)
+                // if (pokemonFiltrado != null) {
+                pokemonFiltrado = filtrarAltura(pokemonFiltrado, opciones.height)
+            }
+
+            if (pokemonFiltrado != null) {
                 
-                        return
-                    } 
 
+                limit += 1;
+                añadirPokemon(pokemon.response)
+                pokemones.push(pokemon.response)
+
+                if (limit == 15) {
+
+                    return
                 }
 
             }
-            
+
+        }
+
 
     }
 
-
-    $('#listado-pokemon').on('click', '.pokemon', (response) => {
+    $('#listado-pokemon').on('click', '.info-pokemon', (response) => {
         // console.log("me presionaste")
-        console.log("me presionaste y soy el articule" + response.target.dataset.value)
+     
+        console.log("me presionaste y soy el articule" + response.currentTarget.dataset.value)
+
+        if (response.currentTarget.dataset.value != undefined) {
+
+            añadirItemHistorial(response.currentTarget.dataset.value)
+
+        }
+    })
+
+    $('#logooo').click((response)=>{
+        console.log(response)
+
+    })
+
+    $('#listado-pokemon').on('click', '.favorito img', (response) => {
+        // console.log("me presionaste")
+        // console.log( response.currentTarget)
 
         if (response.target.dataset.value != undefined) {
             const exist = localStorage.getItem(response.target.dataset.value)
 
             if (exist != null) {
+                $(response.currentTarget).removeClass('restablecer-Opacidad')
+                $(response.currentTarget).addClass('item-favorito')
                 const exists = JSON.parse(exist)
-                console.log("tipo" + exists.image)
+                
                 eliminarFavoritoPokemon(response.target.dataset.value)
             }
-            else marcarFavoritoPokemon(response.target.dataset.value)
-
-
-
-
-
+            else{ 
+                marcarFavoritoPokemon(response.target.dataset.value)
+                // $(response.currentTarget).css({'opacity':1})
+                $(response.currentTarget).removeClass('item-favorito')
+                $(response.currentTarget).addClass('restablecer-Opacidad')
+                
+            }
+            
+            
 
         }
     })
@@ -350,10 +374,10 @@ $(document).ready(async () => {
 
 
     $('.carga').click(async () => {
-    
-        
+
+
         paginado();
-      
+
 
         // if (opciones.type != "" || opciones.eggs != "") paginado()
         // else {
@@ -372,41 +396,36 @@ $(document).ready(async () => {
 
     const paginado = async () => {
         if (opciones.eggs != "") {
-            
-            if( offset < totalPokemonFiltrado.length ){
+
+            if (offset < totalPokemonFiltrado.length) {
                 $('.carga').removeClass('ocultar');
                 $('.carga').addClass('visualizar-huevos');
                 await filtrarContenidoPorHuevo();
-                                
+
             }
-            console.log("ofset "+offset+" totalPokemonFiltrado.length "+totalPokemonFiltrado.length)
-            if (offset >= totalPokemonFiltrado.length){
+            console.log("ofset " + offset + " totalPokemonFiltrado.length " + totalPokemonFiltrado.length)
+            if (offset >= totalPokemonFiltrado.length) {
                 $('.carga').removeClass('visualizar-huevos');
                 $('.carga').addClass('ocultar');
             }
-           
+
 
         }
-        else if (opciones.type != "" && opciones.eggs == ""){
-            if( offset < totalPokemonFiltrado.length ){
+        else if (opciones.type != "" && opciones.eggs == "") {
+            if (offset < totalPokemonFiltrado.length) {
                 $('.carga').removeClass('ocultar');
                 $('.carga').addClass('visualizar-huevos');
                 await filtrarContenidoPorTipo();
-                                
+
             }
-            console.log("ofset"+offset)
-            if (offset >= totalPokemonFiltrado.length){
+            console.log("ofset" + offset)
+            if (offset >= totalPokemonFiltrado.length) {
                 $('.carga').removeClass('visualizar-huevos');
                 $('.carga').addClass('ocultar');
             }
-           
+
 
         }
-        
-
-
-
-
 
 
         // if (totalPokemonFiltrado < limit) { console.log("mayor"); limit = totalPokemonFiltrado; }
@@ -475,15 +494,15 @@ $(document).ready(async () => {
             if (peso > 500) {
 
                 if (pokemon.response.peso > 500 && pokemon.response.peso < 100000000000) {
-                  
+
                     peokemon_peso = pokemon;
 
                 }
             }
             if (peso < 501) {
-               
+
                 if (pokemon.response.peso < 501) {
-            
+
                     peokemon_peso = pokemon;
 
                 }
@@ -512,15 +531,15 @@ $(document).ready(async () => {
     }
     const filtrarAltura = (pokemon, altura) => {
         let peokemon_altura = null;
-        
+
         if (pokemon != null && altura != 100000000000) {
-            if (altura > 16 ) {
-                console.log("es ingrese por alto ", altura+ " en el response "+pokemon.response.altura )
+            if (altura > 16) {
+                console.log("es ingrese por alto ", altura + " en el response " + pokemon.response.altura)
 
                 if (pokemon.response.altura > 16 && pokemon.response.altura < 100000000000) peokemon_altura = pokemon
             }
             if (altura < 17) {
-                ("es ingrese por bajo ", altura+ " en el response "+pokemon.response.altura )
+                ("es ingrese por bajo ", altura + " en el response " + pokemon.response.altura)
                 if (pokemon.response.altura < 17) peokemon_altura = pokemon
             }
             return peokemon_altura
@@ -618,7 +637,7 @@ $(document).ready(async () => {
 
             return {
                 code: 200,
-                response: { "image": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, "especie": response.name, "type": response.types, "peso": response.weight, "altura": response.height, "favorito": false }
+                response: { "image": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, "especie": response.name, "type": response.types, "peso": response.weight, "altura": response.height, "favorito": false , historial: false}
             };
         } catch ({ error }) {
 
@@ -629,84 +648,104 @@ $(document).ready(async () => {
 
     }
     const añadirPokemon = (data) => {
-
-        if (data.type.length == 1) {
-
-
-            $("<article>", {
-                'class': 'pokemon',
-            }).append(
-                $('<img>', {
-                    'src': data.image,
-                    'alt': data.especie,
+        let clas;
+        if (data != null) {
+            if (data.favorito == true)  clas = 'restablecer-Opacidad'
+            else clas= "item-favorito"
+            if (data.type.length == 1) {
 
 
-                }),
-                $('<h5>', {
-                    'text': data.especie.toUpperCase(),
-                    'class': 'nombre-pokemon'
-                })
-                ,
-                $('<h5>', {
-                    'text': data.type[0].type.name.toUpperCase(),
-                    'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
-
-                }),
-                $('<div>', {
-                    // 'text': data.type[0].type.name.toUpperCase()             
-                    'class': 'favorito'
-                }).append($
-                    ('<img>', {
-                        // 'text': data.type[0].type.name.toUpperCase(),
-                        'src': '../img/estrella.png',
+                $("<article>", {
+                    'class': 'pokemon',
+                    
+                }).append(
+                    $('<img>', {
+                        'src': data.image,
+                        'alt': data.especie,
                         'data-value': data.especie,
+                        'class': 'info-pokemon',
 
-                        'class': 'item-favorito'
 
+                    }),
+                    $('<h5>', {
+                        'text': data.especie.toUpperCase(),
+                        'class': 'nombre-pokemon info-pokemon',
+                        'data-value': data.especie,
                     })
-                )
+                    ,
 
-            ).hide().appendTo('#listado-pokemon').fadeIn('fast');
+                    $('<div>', {
+                        // 'text': data.type[0].type.name.toUpperCase()             
+                        'class': 'favorito'
+                    }).append(
+                        $('<h5>', {
+                            'text': data.type[0].type.name.toUpperCase(),
+                            'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
+
+                        }),
+                        $('<img>', {
+                            // 'text': data.type[0].type.name.toUpperCase(),
+                            'src': '../img/estrella.png',
+                            'data-value': data.especie,
+                            
+                            'class': clas
+
+                        })
+
+                    )
+
+                ).hide().appendTo('#listado-pokemon').fadeIn('fast');
+            }
+            else {
+
+                $("<article>", {
+                    'class': 'pokemon',
+                    'data-value': data.especie,
+                }).append(
+                    $('<img>', {
+                        'data-value': data.especie,
+                        'src': data.image,
+                        'alt': data.especie,
+                        'class': 'info-pokemon',
+                        
+                    }),
+                    $('<h5>', {
+                        'data-value': data.especie,
+                        'text': data.especie.toUpperCase(),
+                        'class': 'nombre-pokemon info-pokemon'
+                    }),
+                    $('<div>', {
+                        // 'text': data.type[0].type.name.toUpperCase(),
+                        // 'src': '../img/estrella.png',
+                        // 'alt': 'icono favorito',
+                        'class': 'favorito'
+
+                    }).append(
+                        $('<h5>', {
+                            'text': data.type[0].type.name.toUpperCase(),
+                            'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
+
+                        }), $('<h5>', {
+                            'text': data.type[1].type.name.toUpperCase(),
+                            'class': `tipos-pokemon ${data.type[1].type.name.toUpperCase()}`,
+
+                        }),
+                        $('<img>', {
+                            // 'text': data.type[0].type.name.toUpperCase(),
+                            'src': '../img/estrella.png',
+                            'data-value': data.especie,
+                            'class':    clas
+
+                        })
+
+                    )
+
+
+                ).hide().appendTo('#listado-pokemon').fadeIn('fast');
+
+            }
+
         }
-        else {
-
-            $("<article>", {
-                'class': 'pokemon'
-            }).append(
-                $('<img>', {
-                    'src': data.image,
-                    'alt': data.especie
-                }),
-                $('<div>', {
-                    // 'text': data.type[0].type.name.toUpperCase(),
-                    // 'src': '../img/estrella.png',
-                    // 'alt': 'icono favorito',
-                    'class': 'contendor-favorito'
-
-                }),
-                $('<h5>', {
-                    'text': data.especie.toUpperCase(),
-                    'class': 'nombre-pokemon'
-                }),
-
-
-                $('<h5>', {
-                    'text': data.type[0].type.name.toUpperCase(),
-                    'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
-
-                }), $('<h5>', {
-                    'text': data.type[1].type.name.toUpperCase(),
-                    'class': `tipos-pokemon ${data.type[1].type.name.toUpperCase()}`,
-
-
-                }),
-
-
-            ).hide().appendTo('#listado-pokemon').fadeIn('fast');
-
-        }
-
-
     }
 
     const buscarTiposPokemon = async (tipo) => {
@@ -762,21 +801,55 @@ $(document).ready(async () => {
 
     const marcarFavoritoPokemon = async (name) => {
         const pokemonFavorito = buscarPokemon(name).then((resp) => {
+            resp.response.favorito =true
             if (localStorage) {
                 localStorage.setItem(name, JSON.stringify(resp.response))
             }
         })
-   
+
 
         console.log("Se añadio elemento ")
     }
 
     const eliminarFavoritoPokemon = async (name) => {
+    
         if (localStorage) {
             localStorage.removeItem(name)
 
         }
 
+    }
+
+    const consultarFavorito = ( pokemon)=>{
+        if (localStorage) {
+
+            const exist = localStorage.getItem(pokemon)
+            if (exist == null) return false
+            return true
+
+        }
+
+    }
+
+    const añadirItemHistorial = async (name) => {
+        keys = Math.floor(Math.random() * (10000000 - 0))
+        const pokemonFavorito = buscarPokemon(name).then((resp) => {
+            let pokemonHistorial = {
+                image: resp.response.image,
+                especie: resp.response.especie,
+                type: resp.response.type,
+                fechayhora:  "dfff",
+                historial: true,
+                favorito: false
+            }
+            
+            if (localStorage) {
+                localStorage.setItem( `historial${keys}`, JSON.stringify(pokemonHistorial))
+            }
+        })
+
+
+     
     }
 
 

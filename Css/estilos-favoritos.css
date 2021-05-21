@@ -5,3 +5,68 @@
     justify-self:flex-start;
     max-width: 23px;
 }
+.titulo{
+    font-size: 4vh;
+}
+
+.contenedor-mapa{
+    justify-content: center;
+    padding-top: 5vh;;
+    text-align: center;
+}
+
+.info-contacto{
+        padding-top: 3vh;
+        font-size: 3vh;
+        font-weight: 800;
+}
+
+#map{
+    height: 35vh;
+    width: 60vw;
+    min-width: 200px;
+    z-index: 0;
+
+   
+    display: inline-block;
+
+}
+.item-favorito {
+    opacity: 1;
+}
+
+
+@media only screen and (min-width: 750px){
+    .info-contacto{
+        padding-top: 3vh;
+        font-size: 2.7vh;
+        font-weight: 800;
+        font-size: 3vh;
+    }
+
+    .titulo{
+        font-size: 5vh;
+    }
+}
+
+@media only screen and (min-width: 920px){
+
+    #map{
+        width: 50vw;
+        min-width: 350px;
+        height: 40vh;
+        z-index: 0;
+    }
+
+    .info-contacto{
+        padding-top: 3vh;
+        font-size: 2.7vh;
+        font-weight: 800;
+        font-size: 3vh;
+    }
+    .titulo{
+        font-size: 5vh;
+    }
+    
+
+}
