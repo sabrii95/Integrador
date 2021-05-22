@@ -5,8 +5,6 @@
     margin: 0;
     font-family: 'Dosis', sans-serif;
 }
-
-
 main{
     text-align: center;
 
@@ -15,7 +13,7 @@ main h1{
     margin-top: 7vh;
 }
 body{
-    background-color: #666666;
+    background-image: url("../img/body_gray_bg.png");
 }
 header{
     background-color: white;
@@ -36,8 +34,6 @@ main{
     margin:0 auto;
     padding: 70px 0;
 }
-
-
 footer{
     background-color: black;
     height: 70px;
@@ -69,7 +65,6 @@ footer{
     width: 9%;
     min-width: 100px;
 
-    
 }
 .menu-item a{
     display: flex;
@@ -103,7 +98,6 @@ footer{
     font-size: 4vh;
 
 }
-
 .inicio:hover,.inicio::before,.inicio::after{
     background-color: #E3350D;
 }
@@ -148,6 +142,9 @@ footer{
     right: 0;
     background-color: white;
     visibility: hidden;
+}
+.menu-list-mobile{
+    background-color: white;
 }
 .menu-item-mobile{
     height: 40px;
@@ -201,6 +198,44 @@ footer{
 .poke-img{
     width: 150px;
 }
+/*Notice*/
+.notice{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 50px auto 0;
+    justify-content: space-evenly;
+}
+.colum a{
+    text-decoration: none;
+}
+.colum article{
+    margin-bottom: 30px;
+    border-radius: 10px;
+    color:white;
+}
+.colum article p{
+    margin-top: 10px;
+    color: black;
+    font-weight: bolder;
+}
+.colum article div{
+    border-radius: 10px;
+}
+.notice img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.main{
+    max-width: 578px;
+}
+.right{
+    max-width: 305px;
+}
+.notice-des{
+    text-align: left;
+    padding: 10px;
+}
 
 @media only screen and (min-width: 750px){
     header{
@@ -218,5 +253,12 @@ footer{
     }
     .logo-menu-mobile,.menu-mobile{
         display: none;
+    }
+    .dot-list {
+        right: 45%;
+        left: 45%;
+    }
+    .prev, .next {
+        display: block;
     }
 }
