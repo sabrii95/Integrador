@@ -129,13 +129,17 @@ $(document).ready(async () => {
 
         }
         else if (opciones.type == "" && opciones.eggs == "") {
-            pokemones = []
-            pokemones = await completarListadoPokemon(offset);
+            // pokemones = []
+            // console.log("voy a llamar")
+            // let pokemons = await buscarTodosPokemon(offset);
+            // console.log(pokemons);
 
-            offset = offset + 15;
+            // offset = offset + 15;
+            paginado()
 
         }
 
+        
 
 
         // else if (opciones.type != "" && opciones.eggs != "") {
@@ -222,6 +226,47 @@ $(document).ready(async () => {
 
     })
 
+    const filtradoTodosPokemon = async ()=>{
+        let pokemons = await buscarTodosPokemon(offset);
+        let pokemonFiltrado;
+        console.log(pokemons.response.length)
+        for await (let x of pokemons.response) {
+         
+            let pokemon = await buscarPokemon(x.name);
+            offset +=1;
+            if (pokemon.code == 200) {
+               
+                pokemonFiltrado = filtrasPorPeso(pokemon, opciones.width)
+                pokemonFiltrado = filtrarAltura(pokemonFiltrado, opciones.height)
+
+                if (pokemonFiltrado != null) {
+                   
+                    if (consultarFavorito(pokemonFiltrado.response.especie)){
+                        pokemonFiltrado.response.favorito =true;
+                        console.log("marque como favorito a ",pokemonFiltrado.response.especie)
+                    }
+    
+                    limit += 1;
+
+                    añadirPokemon(pokemon.response)
+                    pokemones.push(pokemon.response)
+                    console.log("pokemones len"+pokemones.length+"ofset"+offset )
+
+                    
+                    if (limit == 15) {
+                        console.log("ofset" + offset)
+                        return
+                    }
+
+                }
+
+            }
+
+        }
+
+    } 
+
+
     const filtrarContenidoPorTipo = async () => {
         let coleccionTipo = totalPokemonFiltrado.slice(offset)
         let pokemonFiltrado;
@@ -238,7 +283,7 @@ $(document).ready(async () => {
                 pokemonFiltrado = filtrarAltura(pokemonFiltrado, opciones.height)
 
                 if (pokemonFiltrado != null) {
-                    console.log("especie",pokemonFiltrado.response.especie)
+                   
                     if (consultarFavorito(pokemonFiltrado.response.especie)){
                         pokemonFiltrado.response.favorito =true;
                         console.log("marque como favorito a ",pokemonFiltrado.response.especie)
@@ -279,6 +324,10 @@ $(document).ready(async () => {
             }
 
             if (pokemonFiltrado != null) {
+                if (consultarFavorito(pokemonFiltrado.response.especie)){
+                    pokemonFiltrado.response.favorito =true;
+                    console.log("marque como favorito a ",pokemonFiltrado.response.especie)
+                }
                 
 
                 limit += 1;
@@ -424,6 +473,29 @@ $(document).ready(async () => {
                 $('.carga').addClass('ocultar');
             }
 
+
+        }
+        else if (opciones.type == "" && opciones.eggs == "") {
+            if (offset == 0) {
+                $('.carga').removeClass('ocultar');
+                $('.carga').addClass('visualizar-huevos');
+             
+                await filtradoTodosPokemon()
+            }
+            else if (pokemones.length <1118 ) {
+                $('.carga').removeClass('ocultar');
+                $('.carga').addClass('visualizar-huevos');
+             
+                await filtradoTodosPokemon()
+
+            }
+            else if ( pokemones.length == 1118) {
+                $('.carga').removeClass('visualizar-huevos');
+                $('.carga').addClass('ocultar');
+            }
+            
+
+            
 
         }
 
@@ -853,17 +925,17 @@ $(document).ready(async () => {
     }
 
 
-    const completarListadoPokemon = async (offset) => {
-        var todosPokemon = await buscarTodosPokemon(offset);
-        for (const x of todosPokemon.response) {
+    // const completarListadoPokemon = async (offset) => {
+    //     var todosPokemon = await buscarTodosPokemon(offset);
+    //     for (const x of todosPokemon.response) {
 
-            const pokemon = await buscarPokemon(x.name);
-            listadoTotalPokemon.push(pokemon);
+    //         const pokemon = await buscarPokemon(x.name);
+    //         listadoTotalPokemon.push(pokemon);
 
-        }
-        return listadoTotalPokemon
+    //     }
+    //     return listadoTotalPokemon
 
-    }
+    // }
 
 
 

@@ -94,6 +94,43 @@ $(document).ready(async () => {
         }
     }
 
+    $('#listado-pokemon').on('click', '.favorito img', (response) => {
+        // console.log("me presionaste")
+        // console.log( response.currentTarget)
+
+        if (response.target.dataset.value != undefined) {
+            const exist = localStorage.getItem(response.target.dataset.value)
+            console.log("$(response).closest('fieldsed')"+JSON.stringify($(response).parent()))
+            const padredirecto = $(response.currentTarget).parent()
+            padredirecto.parent()
+
+            
+            if (exist != null) {   
+                eliminarFavoritoPokemon(response.target.dataset.value)
+                padredirecto.parent().addClass('ocultar')
+            }
+            // else{ 
+            //     marcarFavoritoPokemon(response.target.dataset.value)
+            //     // $(response.currentTarget).css({'opacity':1})
+            //     $(response.currentTarget).removeClass('item-favorito')
+            //     $(response.currentTarget).addClass('restablecer-Opacidad')
+                
+            // }
+            
+            
+
+        }
+    })
+
+    const eliminarFavoritoPokemon = async (name) => {
+    
+        if (localStorage) {
+            localStorage.removeItem(name)
+
+        }
+
+    }
+
     for (x = 0; x <= localStorage.length - 1; x++) {
         clave = localStorage.key(x);
         const valor = localStorage.getItem(clave)

@@ -93,15 +93,64 @@ $(document).ready(async () => {
 
         }
     }
+
+
+    // $('#listado-pokemon').on('click', '.favorito img', (response) => {
+    //     // console.log("me presionaste")
+    //     // console.log( response.currentTarget)
+
+    //     if (response.target.dataset.value != undefined) {
+    //         // const exist = localStorage.getItem(response.target.dataset.value)
+    //         // console.log("$(response).closest('fieldsed')"+JSON.stringify($(response).parent()))
+    //         const padredirecto = $(response.currentTarget).parent()
+    //         padredirecto.parent()
+
+    //         eliminarFavoritoPokemon(response.target.dataset.value)
+    //         padredirecto.parent().addClass('ocultar')
+
+    //         // else{ 
+    //         //     marcarFavoritoPokemon(response.target.dataset.value)
+    //         //     // $(response.currentTarget).css({'opacity':1})
+    //         //     $(response.currentTarget).removeClass('item-favorito')
+    //         //     $(response.currentTarget).addClass('restablecer-Opacidad')
+
+    //         // }
+
+
+
+    //     }
+    // })
+
+ 
+
+    $('.borrado').click(() => {
+
+        for (x = 0; x <= localStorage.length - 1; x++) {
+            clave = localStorage.key(x);
+            const valor = localStorage.getItem(clave)
+            let sustraer = clave.substring(0, 4)
+            $(".pokemon").addClass('ocultar')
+            const pokemonparseado = JSON.parse(valor);
+    
+            if (sustraer == 'hist') {
+                console.log(sustraer + " especia " + pokemonparseado.especie)
+                localStorage.removeItem(clave)
+    
+            }
+    
+        }
+    })
+
+
     for (x = 0; x <= localStorage.length - 1; x++) {
         clave = localStorage.key(x);
         const valor = localStorage.getItem(clave)
-        let sustraer = clave.substring(0,4)
+        let sustraer = clave.substring(0, 4)
 
         const pokemonparseado = JSON.parse(valor);
-        
-        if ( sustraer == 'hist') {
-            console.log(sustraer+ " especia "+pokemonparseado.especie )
+
+        if (sustraer == 'hist') {
+            console.log(sustraer + " especia " + pokemonparseado.especie)
             añadirPokemon(pokemonparseado)
 
         }
