@@ -1,0 +1,52 @@
+.form{
+    width: 80%;
+    margin: 0 auto;
+}
+.form div{
+    margin: 0 auto 10px;
+    text-align: left;
+    max-width: 500px;
+}
+.form div h3{
+    margin-bottom: 10px
+}
+.form-data,.form div textarea{
+    width: 100%;
+    min-height: 30px;
+    padding:0 5px;
+    border-radius: 5px;
+    border:1px solid;
+    font-size: 16px;
+}
+.form div textarea{
+    min-height: 120px;
+}
+.input-share{
+    height: 100px;
+}
+.form-b{
+    min-width: 120px !important;
+    cursor: pointer;
+    width: 15vw !important;
+    font-size: 20px;
+    font-weight: 800;
+    background-color: #ee6b2f;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0.22em;
+    margin-top: 8px;
+    text-align: center;
+}
+.form-b:hover{
+    background-color: #ee9b4f;
+}
+.form-buttons{
+    margin: 0 auto;
+    max-width: 580px !important;
+    display: flex;
+    justify-content: space-around;
+}
+.form textarea{
+    padding: 10px !important;
+}

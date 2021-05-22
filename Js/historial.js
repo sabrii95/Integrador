@@ -18,9 +18,11 @@ $(document).ready(async () => {
 
 
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'text': data.especie.toUpperCase(),
-                        'class': 'nombre-pokemon'
+                        'class': 'nombre-pokemon info-pokemon',
+                        'data-value': data.especie,
                     })
                     ,
 
@@ -33,14 +35,14 @@ $(document).ready(async () => {
                             'class': `tipos-pokemon ${data.type[0].type.name.toUpperCase()}`
 
                         }),
-                        $('<img>', {
-                            // 'text': data.type[0].type.name.toUpperCase(),
-                            'src': '../img/estrella.png',
-                            'data-value': data.especie,
+                        // $('<img>', {
+                        //     // 'text': data.type[0].type.name.toUpperCase(),
+                        //     'src': '../img/estrella.png',
+                        //     'data-value': data.especie,
 
-                            'class': 'item-favorito'
+                        //     'class': 'item-favorito'
 
-                        })
+                        // })
 
                     )
 
@@ -56,9 +58,11 @@ $(document).ready(async () => {
                         'src': data.image,
                         'alt': data.especie
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'text': data.especie.toUpperCase(),
-                        'class': 'nombre-pokemon'
+                        'class': 'nombre-pokemon info-pokemon',
+                        'data-value': data.especie,
                     }),
                     $('<div>', {
                         // 'text': data.type[0].type.name.toUpperCase(),
@@ -76,13 +80,13 @@ $(document).ready(async () => {
                             'class': `tipos-pokemon ${data.type[1].type.name.toUpperCase()}`,
 
                         }),
-                        $('<img>', {
-                            // 'text': data.type[0].type.name.toUpperCase(),
-                            'src': '../img/estrella.png',
-                            'data-value': data.especie,
-                            'class': 'item-favorito'
+                        // $('<img>', {
+                        //     // 'text': data.type[0].type.name.toUpperCase(),
+                        //     'src': '../img/estrella.png',
+                        //     'data-value': data.especie,
+                        //     'class': 'item-favorito'
 
-                        })
+                        // })
 
                     )
 

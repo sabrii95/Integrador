@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon</title>
     <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../Css/pokemon.css">
     <link rel="stylesheet" href="../Css/stilos-pokedex.css">
-    <link rel="stylesheet" href="../Css/estilos-favoritos.css">
-    <link rel="icon" href="./Img/Poke_Ball_icon.png" />
+    <link rel="icon" href="../Img/Poke_Ball_icon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="contacto" href="./contacto.html">
+                    <a class="contacto">
                         <span>Contacto</span>
                     </a>
                 </li>
@@ -74,9 +74,8 @@
                         <span>Historial</span>
                     </a>
                 </li>
-                
                 <li class="menu-item-mobile">
-                    <a class="contacto" href="./contacto.html">
+                    <a class="contacto">
                         <span>Contacto</span>
                     </a>
                 </li>
@@ -84,13 +83,70 @@
         </nav>
     </header>
     <main>
-        <h1>Historial</h1>
-        <input type="submit" value="Borrar Historial" class="borrado">
-        <section id="listado-pokemon" class="listado">
-
-
+        <section style="margin-bottom: 50px; font-size: 40px;" id="poke-title">
         </section>
-        
+        <section class="dataContainer">
+            <div class="pokeFigure-container" id="pokeFigure-container">
+            </div>
+            <div class="data">
+                <div class="description" id="description">
+                </div>
+                <div class="info">
+                    <ul class="size" id="size">
+                    </ul>
+                    <ul class="abilitys" id="abilitys">
+                        <h2 style="color: white;">Abilitys</h2>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="types-graf">
+            <div class="types">
+                <h2>Type</h2>
+                <ul id="types">
+                </ul>
+            </div>
+            <div class="graf">
+                <h2>Base stats</h2>
+                <div class="graph-group" id="group">
+                </div>
+            </div>
+        </section>
+        <section class="evolution-chain">
+            <h2>Evoluciones</h2>
+            <ul class="chain" id="chain">
+            </ul>
+        </section>
+        <div class="share">
+            <div class="share-friend">
+                <a onclick="setDatoShare()">Compartir con un amigo</a>
+            </div>
+            <div class="share-title">
+                <img src="../img/share.png"/>
+                <h3>Share</h3>
+            </div>
+            <ul class="share-list">
+                <li class="share-item">
+                    <a class="twitter-share-button"
+                    href="https://twitter.com/intent/tweet?text= Les recomiendo ver esa pagina www.pokemon.com la mejor" target="_blank">
+                        <img src="../img/gorjeo.png"/>
+                    </a>
+                </li>
+                <li class="share-item">
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v10.0" nonce="Nx5ysE6m"></script>
+                    <div class="facebook-share" data-href="https://www.pokemon.com" data-layout="button" data-size="small">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.pokemon.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                            <img src="../img/facebook.png"/>
+                        </a>
+                    </div>
+                </li>
+                <li class="share-item">
+                    <a target="_blank" href="mailto:?subject=PokeFiesta&body=Les recomiendo ver esa pagina www.pokemon.com la mejor ">
+                        <img src="../img//gmail.png"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </main>
     <footer>
         <div class="social">
@@ -103,7 +159,6 @@
             <a href="https://www.instagram.com" target="_blank">
                 <img src="../img/instagram.png">
             </a>
-
         </div>
         <div class="separador"></div>
         <div class="copyright">
@@ -114,10 +169,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../Js/Ajax.js"></script>
-
-<script src="../Js/historial.js"></script>
-<!-- <script type="module" src="../Js/BusquedaPokemon.js"></script> -->
-
+<script src="../Js/pokemon.js"></script>
 
 
 </html>

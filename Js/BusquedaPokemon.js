@@ -709,7 +709,7 @@ $(document).ready(async () => {
 
             return {
                 code: 200,
-                response: { "image": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, "especie": response.name, "type": response.types, "peso": response.weight, "altura": response.height, "favorito": false , historial: false}
+                response: { "image": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`, "especie": response.name, "type": response.types, "peso": response.weight, "altura": response.height, "favorito": false , historial: false, idP : response.id}
             };
         } catch ({ error }) {
 
@@ -734,12 +734,13 @@ $(document).ready(async () => {
                     $('<img>', {
                         'src': data.image,
                         'alt': data.especie,
-                        'data-value': data.especie,
+                        // 'data-value': data.especie,
                         'class': 'info-pokemon',
 
 
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'text': data.especie.toUpperCase(),
                         'class': 'nombre-pokemon info-pokemon',
                         'data-value': data.especie,
@@ -775,13 +776,15 @@ $(document).ready(async () => {
                     'data-value': data.especie,
                 }).append(
                     $('<img>', {
-                        'data-value': data.especie,
+                        // 'data-value': data.especie,
                         'src': data.image,
                         'alt': data.especie,
                         'class': 'info-pokemon',
                         
+                        
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'data-value': data.especie,
                         'text': data.especie.toUpperCase(),
                         'class': 'nombre-pokemon info-pokemon'
@@ -912,7 +915,8 @@ $(document).ready(async () => {
                 type: resp.response.type,
                 fechayhora:  "dfff",
                 historial: true,
-                favorito: false
+                favorito: false,
+                idP: resp.response.idP
             }
             
             if (localStorage) {

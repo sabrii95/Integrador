@@ -18,9 +18,11 @@ $(document).ready(async () => {
 
 
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'text': data.especie.toUpperCase(),
-                        'class': 'nombre-pokemon'
+                        'class': 'nombre-pokemon info-pokemon',
+                        'data-value': data.especie,
                     })
                     ,
 
@@ -56,9 +58,11 @@ $(document).ready(async () => {
                         'src': data.image,
                         'alt': data.especie
                     }),
-                    $('<h5>', {
+                    $('<a>', {
+                        'href': `./pokemon.html?id=${data.idP}`,
                         'text': data.especie.toUpperCase(),
-                        'class': 'nombre-pokemon'
+                        'class': 'nombre-pokemon info-pokemon',
+                        'data-value': data.especie,
                     }),
                     $('<div>', {
                         // 'text': data.type[0].type.name.toUpperCase(),

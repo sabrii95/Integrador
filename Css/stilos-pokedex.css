@@ -322,11 +322,14 @@ li.init {
         border-radius: 8px;
  
     }
-    .tamaño-pokemon h5{
+    .nombre-pokemon{
         display: block;
-        padding-bottom: 8px;
+
         margin: 0;
-        font-size: 25px;
+
+        text-decoration: none;
+        color: black;
+        font-weight: 800;
 
     }
 
