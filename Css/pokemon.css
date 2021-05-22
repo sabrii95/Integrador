@@ -3,7 +3,6 @@
 }
 .pokeFigure{
     background-color: #EBEBED;
-    min-width: 320px;
     border-radius: 6px;
 }
 .dataContainer{
@@ -14,13 +13,14 @@
 }
 .pokeFigure img{
     max-width: 100%;
+
 }
 #poke-title span{
     color: darkgray;
 }
 .data{
     width: 40%;
-    min-width: 320px;
+    min-width: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -47,6 +47,7 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 .abilitys{
     text-align: left;
@@ -76,9 +77,10 @@
     list-style: none;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .types ul li{
-    margin: 0 2.5px;
+    margin: 5px 2.5px;
     padding: 8px 50px;
     border-radius: 5px;
 }
@@ -136,12 +138,12 @@
     align-items: end;
     justify-content: center;
     margin: 5% auto 0;
-    width: 75%;
+    width: 90%;
     position: relative;
 }
 .share-friend{
     position: absolute;
-    right: 0;
+    right: -10px;
     background-color: #30a7d7;
     padding: 10px;
     color: white;
@@ -191,6 +193,9 @@
         transform: rotate(
             0deg
             );
+    }
+    .share-friend{
+        right: 0px;
     }
 }
 
