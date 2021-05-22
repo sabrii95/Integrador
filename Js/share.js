@@ -72,7 +72,7 @@ const setShare=(valor)=>{
 const cancel=()=>{
     testEmail="";
     console.log("hola")
-    window.location.replace("index.html")
+    window.location.replace("../index.html")
 }
 
 const send =()=>{
@@ -85,7 +85,7 @@ const send =()=>{
         window.open(`mailto:${mail}?subject=PokeFiesta&body= ${datos} /n ${mensaje}`);
         localStorage.setItem('datosShare', '');
 
-        setTimeout(window.location.replace("index.html"), 100000);
+        setTimeout(window.location.replace("../index.html"), 100000);
     }
     else{
         alert("Debe completar los campos faltantes")

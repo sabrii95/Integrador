@@ -11,9 +11,7 @@ main{
     text-align: center;
 
 }
-main h1{
-    margin-top: 7vh;
-}
+
 body{
     background-color: #666666;
 }
@@ -217,7 +215,19 @@ footer{
     width: 150px;
 }
 
+.noticias{
+    display: none;
+}
+main h1{
+    margin-top: 6vh;
+}
+
+
 @media only screen and (min-width: 750px){
+    main h1{
+        margin-top: 3vh;
+    }
+ 
     header{
         display: block;
     }
@@ -230,9 +240,42 @@ footer{
         top: 1px;
         left: 12px;
         cursor: pointer;
+        
     }
+
     .logo-menu-mobile,.menu-mobile{
         display: none;
     }
+    .noticias{
+        display: block;
+        height: 50px;
+        width: 100%;
+        margin-top: 25px;
+    }
+    .noticias img{
+        height: 100%;
+     
+        
+    }
+    
 
+}
+
+@media only screen and (min-width: 750px) and (max-width: 850px){
+    .logo{
+        margin-top: 10px;
+    }
+    .logo img{
+        width: 130px;
+    }
+}
+
+@media only screen and (min-width: 850px) and (max-width: 920px){
+
+    .logo{
+        margin-top: 5px;
+    }
+    .logo img{
+        width: 160px;
+    }
 }

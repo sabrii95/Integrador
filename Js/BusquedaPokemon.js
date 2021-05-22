@@ -8,7 +8,7 @@ $(document).ready(async () => {
         width: 100000000000
     }
     var listadoTotalPokemon = [];
-    var limit = 15;
+    var limit = 10;
     var offset = 0;
     var i = 0;
     var totalPokemonFiltrado = null;
@@ -35,6 +35,8 @@ $(document).ready(async () => {
         $('.item-peso').removeClass('invertir-color-PesoAltura');
         $('#listado-pokemon').text("");
         $('.list-container').text("");
+        $('.carga').addClass('ocultar');
+
 
     });
 
@@ -253,7 +255,7 @@ $(document).ready(async () => {
                     console.log("pokemones len"+pokemones.length+"ofset"+offset )
 
                     
-                    if (limit == 15) {
+                    if (limit == 10) {
                         console.log("ofset" + offset)
                         return
                     }
@@ -295,7 +297,7 @@ $(document).ready(async () => {
 
 
                     pokemones.push(pokemon.response)
-                    if (limit == 15) {
+                    if (limit == 10) {
                         console.log("ofset" + offset)
                         return
                     }
@@ -334,7 +336,7 @@ $(document).ready(async () => {
                 añadirPokemon(pokemon.response)
                 pokemones.push(pokemon.response)
 
-                if (limit == 15) {
+                if (limit == 10) {
 
                     return
                 }
@@ -422,7 +424,7 @@ $(document).ready(async () => {
     });
 
 
-    $('.carga').click(async () => {
+    $('#carga').click(async () => {
 
 
         paginado();
@@ -444,61 +446,62 @@ $(document).ready(async () => {
     });
 
     const paginado = async () => {
+        $('#volver').addClass('visualizar-huevos')
         if (opciones.eggs != "") {
 
             if (offset < totalPokemonFiltrado.length) {
-                $('.carga').removeClass('ocultar');
-                $('.carga').addClass('visualizar-huevos');
+                $('#carga').removeClass('ocultar');
+                $('#carga').addClass('visualizar-huevos');
                 await filtrarContenidoPorHuevo();
 
             }
             console.log("ofset " + offset + " totalPokemonFiltrado.length " + totalPokemonFiltrado.length)
             if (offset >= totalPokemonFiltrado.length) {
-                $('.carga').removeClass('visualizar-huevos');
-                $('.carga').addClass('ocultar');
+                $('#carga').removeClass('visualizar-huevos');
+                $('#carga').addClass('ocultar');
             }
 
 
         }
         else if (opciones.type != "" && opciones.eggs == "") {
             if (offset < totalPokemonFiltrado.length) {
-                $('.carga').removeClass('ocultar');
-                $('.carga').addClass('visualizar-huevos');
+                $('#carga').removeClass('ocultar');
+                $('#carga').addClass('visualizar-huevos');
                 await filtrarContenidoPorTipo();
 
             }
             console.log("ofset" + offset)
             if (offset >= totalPokemonFiltrado.length) {
-                $('.carga').removeClass('visualizar-huevos');
-                $('.carga').addClass('ocultar');
+                $('#carga').removeClass('visualizar-huevos');
+                $('#carga').addClass('ocultar');
             }
 
 
         }
         else if (opciones.type == "" && opciones.eggs == "") {
             if (offset == 0) {
-                $('.carga').removeClass('ocultar');
-                $('.carga').addClass('visualizar-huevos');
+                $('#carga').removeClass('ocultar');
+                $('#carga').addClass('visualizar-huevos');
              
                 await filtradoTodosPokemon()
             }
             else if (pokemones.length <1118 ) {
-                $('.carga').removeClass('ocultar');
-                $('.carga').addClass('visualizar-huevos');
+                $('#carga').removeClass('ocultar');
+                $('#carga').addClass('visualizar-huevos');
              
                 await filtradoTodosPokemon()
 
             }
             else if ( pokemones.length == 1118) {
-                $('.carga').removeClass('visualizar-huevos');
-                $('.carga').addClass('ocultar');
+                $('#carga').removeClass('visualizar-huevos');
+                $('#carga').addClass('ocultar');
             }
             
 
             
 
         }
-
+        
 
         // if (totalPokemonFiltrado < limit) { console.log("mayor"); limit = totalPokemonFiltrado; }
         // if (opciones.type != "" || opciones.eggs != "") {
@@ -859,7 +862,7 @@ $(document).ready(async () => {
     const buscarTodosPokemon = async (offset) => {
         try {
 
-            const response = await $.ajax(`https://pokeapi.co/api/v2/pokemon?limit=15&offset=${offset}`);
+            const response = await $.ajax(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`);
 
             return {
                 code: 200,

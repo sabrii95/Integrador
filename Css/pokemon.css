@@ -16,7 +16,7 @@
     max-width: 100%;
 }
 #poke-title{
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 #poke-title h1{
     font-size: 6vh;
@@ -183,7 +183,7 @@
     width: 40px;
 }
 
-@media only screen and (min-width: 900px){
+@media only screen and (min-width: 920px){
     .pokeFigure-container,.types,.graf{
         width: 40%;
     }
@@ -199,6 +199,15 @@
             0deg
             );
     }
+    #poke-title{
+        margin-bottom: 0;
+        
+    }
+    #poke-title h1{
+        font-size: 8vh;
+        
+    }
+    
 }
 
 

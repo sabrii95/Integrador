@@ -204,7 +204,7 @@ main{
  
  }
  .eggs h5{
-    display: inline-block;
+    display: block;
   
     padding: 0;
     font-size: 18px;
@@ -569,6 +569,8 @@ li.init {
 .pokemon{
     min-width: 18vw;
 }
+
+
 
 
 
